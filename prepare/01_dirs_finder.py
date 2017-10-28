@@ -7,6 +7,8 @@ import re
 
 DONE_DIRS_FILE = './data/done_dirs.txt'
 
+HADOOP_LOGS_DIR = '/user/bigdatashad/logs/'
+
 
 def read_done_dirs(file_path):
     answer = []
@@ -20,7 +22,11 @@ def read_done_dirs(file_path):
 
 def main():
     done_dirs = read_done_dirs(DONE_DIRS_FILE)
-    print(done_dirs)
+    print('Done {0} dirs'.format(len(done_dirs))
+    
+    command = 'hdfs dfs -ls '
+    result_command = int(os.system(command))
+
     """files = []
     with open('./dirs.txt', 'r') as infile:
         cnt = 1
