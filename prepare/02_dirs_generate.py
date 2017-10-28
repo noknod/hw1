@@ -13,6 +13,8 @@ HADOOP_LOGS_DIR = '/user/bigdatashad/logs/'
 
 HADOOP_HW1_METRICS_PATH = 'hw1/metrics/{0}'
 
+GENERATE_FROM = 
+
 
 def read_dirs_file(file_path):
     answer = []
