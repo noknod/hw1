@@ -45,3 +45,17 @@
 /user/bigdatashad/logs/2017-10-13/access.log.2017-10-13
 /user/bigdatashad/logs/2017-10-14/access.log.2017-10-14
 /user/bigdatashad/logs/2017-10-15/access.log.2017-10-15
+/user/bigdatashad/logs/2017-10-16/access.log.2017-10-16
+
+/user/bigdatashad/logs/2017-10-17/access.log.2017-10-17
+/user/bigdatashad/logs/2017-10-18/access.log.2017-10-18
+/user/bigdatashad/logs/2017-10-19/access.log.2017-10-19
+/user/bigdatashad/logs/2017-10-20/access.log.2017-10-20
+/user/bigdatashad/logs/2017-10-21/access.log.2017-10-21
+/user/bigdatashad/logs/2017-10-22/access.log.2017-10-22
+/user/bigdatashad/logs/2017-10-23/access.log.2017-10-23
+/user/bigdatashad/logs/2017-10-24/access.log.2017-10-24
+/user/bigdatashad/logs/2017-10-25/access.log.2017-10-25
+/user/bigdatashad/logs/2017-10-26/access.log.2017-10-26
+/user/bigdatashad/logs/2017-10-27/access.log.2017-10-27
+/user/bigdatashad/logs/2017-10-28/access.log.2017-10-28

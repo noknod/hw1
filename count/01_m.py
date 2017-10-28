@@ -27,7 +27,8 @@ yarn jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-streaming.jar \
     -output out
 """
 
-ALL_FILES_FILE = '..prepare/data/all_dirs.txt'
+
+ALL_FILES_FILE = '../prepare/data/all_files.txt'
 
 DONE_FILES_FILE = './data/m1_files_done.txt'
 
@@ -42,8 +43,14 @@ def read_dirs_file(file_path):
     return set(answer)
 
 
+def add_dir_to_file(current_dir, file_path):
+    with open(file_path, 'a') as outfile:
+        outfile.write(current_dir)
+        outfile.write('\n')
+
+
 def main():
-    all_files = sored(list(read_dirs_file(ALL_FILES_FILE)))
+    all_files = sorted(list(read_dirs_file(ALL_FILES_FILE)))
     done_files = read_dirs_file(DONE_FILES_FILE)
     print 'All {0}, done {1} files'.format(len(all_files), len(done_files))
 
@@ -64,7 +71,8 @@ def main():
                 print '\n\n++++++++++\n\nERROR\n\n++++++++++\n\n'
                 break
             add_dir_to_file(file_path, DONE_FILES_FILE)
-        break
+            
+        #break
 
 
 if __name__ == '__main__':
