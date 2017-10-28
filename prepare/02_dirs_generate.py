@@ -3,6 +3,7 @@
 import os
 import sys
 import re
+import datetime
 
 
 ALL_DIRS_FILE = './data/all_dirs.txt'
@@ -13,7 +14,11 @@ HADOOP_LOGS_DIR = '/user/bigdatashad/logs/'
 
 HADOOP_HW1_METRICS_PATH = 'hw1/metrics/{0}'
 
-GENERATE_FROM = 
+GENERATE_FROM = datetime.date(2017, 10, 29)
+
+GENERATE_TO = datetime.date(2017, 11, 25)
+
+TEMPLATE_FOR_GENERATE = '/user/bigdatashad/logs/{0}'
 
 
 def read_dirs_file(file_path):
@@ -53,7 +58,13 @@ def find_new_dirs(hadoop_logs_dir, all_dirs_file_path, done_dirs_file_path):
     all_dirs = read_dirs_file(all_dirs_file_path)
     done_dirs = read_dirs_file(done_dirs_file_path)
 
-    dir_list = find_all_dirs(HADOOP_LOGS_DIR)
+    dir_list = []
+    delta = GENERATE_TO - GENERATE_FROM
+    for dummy in range(delta.days):
+        day = GENERATE_FROM + datetime.timedelta(days=dummy)
+        dir_list.append(TEMPLATE_FOR_GENERATE.format(day))
+        #print dummy, day, TEMPLATE_FOR_GENERATE.format(day)
+
     for current_dir in dir_list:
         if current_dir not in all_dirs:
             print 'Add new dir {0}'.format(current_dir)
@@ -72,13 +83,9 @@ def create_dir_in_hadoop(hadoop_dir_path):
 
 
 def check_hadoop_dir_exist(hadoop_path):
-    #print 'check', hadoop_path
     command = 'hdfs dfs -test -d {0} && echo "yes" || echo "no"'.format(hadoop_path)
     stream = os.popen(command)
-    #result = stream.readlines()
-    #print(result)
     return (stream.readlines()[0].strip() == 'yes')
-    #return True
 
 
 def main():
@@ -90,13 +97,11 @@ def main():
     print '\nFound {0} new dirs\n'.format(len(new_dirs))
     
     cnt = 0
-    #for current_dir in all_dirs:
-    #for current_dir in ['/user/bigdatashad/logs/2017-10-28']:#new_dirs:
     for current_dir in new_dirs:
         dir_date = current_dir.split('/')[-1]
         print dir_date
         hadoop_dir_path = HADOOP_HW1_METRICS_PATH.format(dir_date)
-        #print 'hadoop_dir_path', hadoop_dir_path
+        print 'hadoop_dir_path', hadoop_dir_path
 
         is_exists_path = check_hadoop_dir_exist(hadoop_dir_path)        
         if not is_exists_path:
