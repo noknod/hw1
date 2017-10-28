@@ -18,8 +18,14 @@ def read_dirs_file(file_path):
     return set(answer)
 
 
+def add_dir_to_file(current_dir, file_path):
+    with open(file_path, 'a') as outfile:
+        outfile.write(current_dir)
+        outfile.write('\n')
+
+
 def main():
-    all_files = sored(list(read_dirs_file(ALL_FILES_FILE)))
+    all_files = sorted(list(read_dirs_file(ALL_FILES_FILE)))
     done_files = read_dirs_file(DONE_FILES_FILE)
     print 'All {0}, done {1} files'.format(len(all_files), len(done_files))
 
@@ -27,13 +33,13 @@ def main():
         if file_path not in done_files:
             print(file_path)
             file_date = file_path.split('/')[-2]
-            command = 'hdfs dfs -get hw1/metrcics/{0} ./hw1/metrics/{0}/m1_1_2.txt'.format(file_date)
+            command = 'hdfs dfs -get hw1/metrics/{0}/m1_1_2.txt ../../metrics/{0}/'.format(file_date)
             result_command = int(os.system(command))
             if result_command != 0:
                 print '\n\n++++++++++\n\nERROR\n\n++++++++++\n\n'
                 break
             add_dir_to_file(file_path, DONE_FILES_FILE)
-        break
+        #break
 
 
 if __name__ == '__main__':
