@@ -1,0 +1,2 @@
+total_hits 22485020	
+total_users 2244456	

@@ -35,7 +35,7 @@ def main():
     for current_dir in done_dirs:
         dir_date = current_dir.split('/')[-1]
         print dir_date
-        dir_path = 'metrics/{0}'.format(dir_date)
+        dir_path = '../metrics/{0}'.format(dir_date)
         #print 'dir_path', dir_path
 
         if create_dir_local(dir_path):
