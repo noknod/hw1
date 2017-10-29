@@ -21,12 +21,12 @@ yarn jar /opt/hadoop/hadoop-streaming.jar \
     -D stream.num.map.output.key.fields=2 \
     -D mapred.text.key.partitioner.options=-k1,1 \
     -D mapreduce.job.reduces=1 \
-    -files timestamp_mapper.py \
+    -files timestamp_mapper.py,timestamp_reducer.py \
     -input hdfs://{0} \
     -output out/ \
     -mapper "./timestamp_mapper.py" \
     -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
-    -reducer cat
+    -reducer "./timestamp_reducer.py"
 """
 
 """jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-streaming.jar \
@@ -68,7 +68,11 @@ def main():
 
     for file_path in all_files:
         if file_path not in done_files:
+            date_str = file_path.split('/')[-2]
+            if date_str < '2017-10-28':
+                continue
             print(file_path)
+            #break
             command = TEMPLATE.format(file_path)
             result_code = int(os.system(command))
             if result_code != 0:
