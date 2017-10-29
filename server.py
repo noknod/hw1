@@ -18,6 +18,8 @@ app.secret_key = "my_secret_key"
 
 M1_FILE = 'm1_1_2.txt'
 
+M2_FILE = 'm2.txt'
+
 M3_FILE = 'm3.txt'
 
 
@@ -44,6 +46,18 @@ def read_data_by_date(date_in):
                         parts = line.split()
                         answer[parts[0]] = int(parts[1])
 
+            tmp = dir_path + M2_FILE
+            if os.path.exists(tmp):
+                tses = {}
+                with open(dir_path + M2_FILE, 'r') as infile:
+                    print ''
+                    for row in infile.readlines():
+                        line = row.strip()
+                        if len(line) != 0:
+                            print line
+                            parts = line.split()
+                            answer[parts[0]] = int(parts[1])
+
             tmp = dir_path + M3_FILE
             if os.path.exists(tmp):
                 cntrs = {}
@@ -53,8 +67,10 @@ def read_data_by_date(date_in):
                         line = row.strip()
                         if len(line) != 0:
                             print line
-                            parts = line.split()
-                            cntrs[parts[0]] = int(parts[1])
+                            pos = line.rfind(' ')
+                            key = line[:pos]
+                            value = line[pos + 1:]
+                            cntrs[key] = int(value)
                 if len(cntrs) != 0:
                     print 'cntrs'
                     answer['users_by_country'] = cntrs
