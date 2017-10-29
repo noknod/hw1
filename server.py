@@ -56,7 +56,7 @@ def read_data_by_date(date_in):
                         if len(line) != 0:
                             print line
                             parts = line.split()
-                            answer[parts[0]] = int(parts[1])
+                            answer[parts[0]] = float(parts[1])
 
             tmp = dir_path + M3_FILE
             if os.path.exists(tmp):
