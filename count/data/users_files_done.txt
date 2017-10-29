@@ -1,0 +1,1 @@
+/user/bigdatashad/logs/2017-09-01/access.log.2017-09-01
