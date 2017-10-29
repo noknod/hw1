@@ -26,6 +26,7 @@ M3_FILE = 'm3.txt'
 
 def iterate_between_dates(start_date, end_date):
     span = end_date - start_date
+    #print span
     for i in xrange(span.days + 1):
         yield start_date + datetime.timedelta(days=i)
 
@@ -95,7 +96,9 @@ def index():
 @app.route("/api/hw1")
 def api_hw1():
     start_date = request.args.get("start_date", None)
+    #print start_date    
     end_date = request.args.get("end_date", None)
+    #print end_date
     if start_date is None or end_date is None:
         abort(400)
     start_date = datetime.datetime(*map(int, start_date.split("-")))
@@ -105,6 +108,7 @@ def api_hw1():
     print '[----------]\n', start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d")
     print '[----------]'
     for date in iterate_between_dates(start_date, end_date):
+        print date
         data = read_data_by_date(date)
         #total_hits = int(random.normalvariate(1000, 50))
         #total_users = int(random.normalvariate(100, 5))
