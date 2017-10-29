@@ -18,6 +18,9 @@ app.secret_key = "my_secret_key"
 
 M1_FILE = 'm1_1_2.txt'
 
+M3_FILE = 'm3.txt'
+
+
 
 def iterate_between_dates(start_date, end_date):
     span = end_date - start_date
@@ -39,7 +42,22 @@ def read_data_by_date(date_in):
                     if len(line) != 0:
                         print line
                         parts = line.split()
-                        answer[parts[0]] = parts[1]
+                        answer[parts[0]] = int(parts[1])
+
+            tmp = dir_path + M3_FILE
+            if os.path.exists(tmp):
+                cntrs = {}
+                with open(tmp, 'r') as infile:
+                    print ''
+                    for row in infile.readlines():
+                        line = row.strip()
+                        if len(line) != 0:
+                            print line
+                            parts = line.split()
+                            cntrs[parts[0]] = int(parts[1])
+                if len(cntrs) != 0:
+                    print 'cntrs'
+                    answer['users_by_country'] = cntrs
 
             print answer
         else:
@@ -50,7 +68,7 @@ def read_data_by_date(date_in):
         print ' *** ERROR ***'
         exc_info = sys.exc_info()
         print exc_info
-        return {}
+        return answer
 
 
 @app.route("/")
