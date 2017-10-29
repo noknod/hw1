@@ -1,0 +1,4 @@
+France 444000	
+Germany 462779	
+Russian Federation 1153003	
+United Kingdom 159871	

@@ -21,8 +21,8 @@ yarn jar /opt/hadoop/hadoop-streaming.jar \
     -D stream.num.map.output.key.fields=2 \
     -D mapred.text.key.partitioner.options=-k1,1 \
     -D mapreduce.job.reduces=1 \
-    -files get_user_id_timestamp_re.py \
-    -input in/ \
+    -files timestamp_mapper.py \
+    -input hdfs://{0} \
     -output out/ \
     -mapper "./timestamp_mapper.py" \
     -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
@@ -84,7 +84,7 @@ def main():
                 break
             add_dir_to_file(file_path, DONE_FILES_FILE)
             
-        break
+        #break
 
 
 if __name__ == '__main__':
