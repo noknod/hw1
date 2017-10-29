@@ -81,7 +81,7 @@ def main():
             print '\ncomputed\n'
 
             dir_path = file_path.split('/')[-2]
-            command = 'hdfs dfs -cp out/part-00000 hw1/metrics/{0}/timestamp.txt'.format(dir_path)
+            command = 'hdfs dfs -cp out/part-00000 hw1/metrics/{0}/m2.txt'.format(dir_path)
             result_command = int(os.system(command))
             if result_command != 0:
                 print '\n\n++++++++++\n\nERROR\n\n++++++++++\n\n'

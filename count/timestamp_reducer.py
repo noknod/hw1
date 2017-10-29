@@ -26,19 +26,26 @@ def main():
             session_time = 0
             total_count = 0
             bounce_count = 0
+            was = False
             current_key = key
 
         elif current_key != key:
-            session_count += 1            
+            session_count += 1
+            if not was:
+                bounce_count += 1
             current_key = key
+            was = False
 
         elif time > current_time + SESSION_TIME_IN_SECONDS:
             session_count += 1
+            if not was:
+                bounce_count += 1
+            was = False
 
         else:
             # old_session_time = session_time
             session_time += time - current_time
-            bounce_count += 1
+            was = True
             # if session_time < old_session_time:
             #    print(session_time, old_session_time, time, prev_time)
         current_time = time
@@ -47,7 +54,7 @@ def main():
     if session_count != 0:
         average_session_length = 1.0 * total_count / session_count
         average_session_time = 1.0 * session_time / session_count
-        bounce_rate = 1.0 * (session_count - bounce_count) / session_count
+        bounce_rate = 1.0 * bounce_count / session_count
     else:
         average_session_length = 0.0
         average_session_time = 0.0

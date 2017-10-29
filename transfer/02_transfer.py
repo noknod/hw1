@@ -33,7 +33,7 @@ def main():
         if file_path not in done_files:
             print(file_path)
             file_date = file_path.split('/')[-2]
-            command = 'hdfs dfs -get hw1/metrics/{0}/timestamp.txt ../metrics/{0}/'.format(file_date)
+            command = 'hdfs dfs -get hw1/metrics/{0}/m2.txt ../metrics/{0}/'.format(file_date)
             result_command = int(os.system(command))
             if result_command != 0:
                 print '\n\n++++++++++\n\nERROR\n\n++++++++++\n\n'
