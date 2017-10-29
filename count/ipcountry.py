@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/shared/anaconda/bin/python
 
 
 import sys

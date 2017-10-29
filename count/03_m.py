@@ -19,6 +19,7 @@ hdfs dfs -rm -r -skipTrash out
 
 yarn jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-streaming.jar \
     -D mapreduce.job.name="Uniq users step1" \
+    -D mapreduce.job.maps=20 \
     -D mapreduce.job.reduces=$NUM_REDUCERS \
     -files metric03_mapper.py,metric03_reducer.py,IP2LOCATION-LITE-DB1.CSV,ipcountry.py \
     -mapper "./metric03_mapper.py" \
@@ -56,8 +57,11 @@ def main():
 
     for file_path in all_files:
         if file_path not in done_files:
-            print(file_path)
+            print file_path
+            file_path = '/user/yuklyushkin/hw1/metrics/{0}/users.txt'.format(
+                        file_path.split('/')[-2])
             command = TEMPLATE.format(file_path)
+            #break
             result_code = int(os.system(command))
             if result_code != 0:
                 print '\n\n*********\n\nERROR\n\n*********\n\n'
@@ -72,7 +76,7 @@ def main():
                 break
             add_dir_to_file(file_path, DONE_FILES_FILE)
             
-        break
+        #break
 
 
 if __name__ == '__main__':
