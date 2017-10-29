@@ -3,13 +3,15 @@
 
 import sys
 
+import pandas as pd
+
 
 NOT_FOUNDED = '<NOT FOUNDED>'
 
 
 sys.path.append('.')
 
-countries_list = []
+"""countries_list = []
 with open('./IP2LOCATION-LITE-DB1.CSV', 'r') as infile:
     for row in infile.readlines():
         line = row.strip() 
@@ -22,6 +24,10 @@ with open('./IP2LOCATION-LITE-DB1.CSV', 'r') as infile:
             country = parts[3]
             countries_list.append((lower, upper, country))
 # print countries_list[:5]
+"""
+countries_df = pd.read_csv('./IP2LOCATION-LITE-DB1.CSV', 
+                           header=None,
+                           names=['lower', 'upper', 'code', 'name'])
     
 
 def to_dec(ip_address):
@@ -41,10 +47,16 @@ def to_ip(dec):
 
 def which_country(ip_address):
     dec = to_dec(ip_address)
-    for row in countries_list:
-        if dec >= row[0] and dec <= row[1]:
-            return row[2]
-    return NOT_FOUNDED
+    dummy = countries_df[
+                (dec >= countries_df.lower) &
+                (dec <= countries_df.upper)]
+    if dummy.shape[0] == 0:
+        return NOT_FOUNDED
+    return dummy.name.item()
+    #for row in countries_list:
+    #    if dec >= row[0] and dec <= row[1]:
+    #        return row[2]
+    #return NOT_FOUNDED
 
 
 if __name__ == '__main__':
