@@ -2,14 +2,22 @@
 
 
 import sys
-import re
 
 
 def main():
     current_key = None
     cnt = 0
+    #w = 0
     for line in sys.stdin:
-        key, value = line.split()
+       #w += 1
+        key, value = line.strip().split('\t')
+        #print 'line', line
+        #print 'key', key
+        #print 'value', value
+        #print '---'
+        value = int(value)
+        #print key, value
+
         if current_key is None:
             current_key = key
             cnt = value
@@ -19,6 +27,8 @@ def main():
             cnt = value
         else:
             cnt += value
+        #if w >= 100:
+        #    break
 
     if not current_key is None:
         print current_key, cnt
