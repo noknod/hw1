@@ -22,8 +22,6 @@
 /user/bigdatashad/logs/2017-09-22/access.log.2017-09-22
 /user/bigdatashad/logs/2017-09-23/access.log.2017-09-23
 /user/bigdatashad/logs/2017-09-24/access.log.2017-09-24
-/user/bigdatashad/logs/2017-09-24/access.log.2017-09-24.0
-/user/bigdatashad/logs/2017-09-25/.access.log.2017-09-25.dPbFlS
 /user/bigdatashad/logs/2017-09-25/access.log.2017-09-25
 /user/bigdatashad/logs/2017-09-26/access.log.2017-09-26
 /user/bigdatashad/logs/2017-09-27/access.log.2017-09-27
