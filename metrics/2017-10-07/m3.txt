@@ -1,0 +1,4 @@
+France 324213	
+Germany 388758	
+Russian Federation 1219004	
+United Kingdom 106448	

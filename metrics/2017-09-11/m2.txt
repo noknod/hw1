@@ -1,0 +1,3 @@
+average_session_length 4.21127713903	
+average_session_time 48.3283313352	
+bounce_rate 0.0572560444293	

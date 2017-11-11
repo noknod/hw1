@@ -59,3 +59,15 @@
 /user/bigdatashad/logs/2017-10-27
 /user/bigdatashad/logs/2017-10-28
 /user/bigdatashad/logs/2017-10-29
+/user/bigdatashad/logs/2017-10-30
+/user/bigdatashad/logs/2017-10-31
+/user/bigdatashad/logs/2017-11-01
+/user/bigdatashad/logs/2017-11-02
+/user/bigdatashad/logs/2017-11-03
+/user/bigdatashad/logs/2017-11-04
+/user/bigdatashad/logs/2017-11-05
+/user/bigdatashad/logs/2017-11-06
+/user/bigdatashad/logs/2017-11-07
+/user/bigdatashad/logs/2017-11-08
+/user/bigdatashad/logs/2017-11-09
+/user/bigdatashad/logs/2017-11-10

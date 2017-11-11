@@ -1,4 +1,4 @@
-France 232314	
-Germany 255208	
-Russian Federation 672483	
-United Kingdom 66406	
+France 384981	
+Germany 430400	
+Russian Federation 1107595	
+United Kingdom 113417	

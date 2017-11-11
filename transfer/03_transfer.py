@@ -31,6 +31,9 @@ def main():
 
     for file_path in all_files:
         if file_path not in done_files:
+            #if file_path.split('/')[-2] < '2017-10-29':
+            if file_path.split('/')[-2] in ('2017-10-02', '2017-10-03', '2017-10-04'):
+                continue
             print(file_path)
             file_date = file_path.split('/')[-2]
             command = 'hdfs dfs -get hw1/metrics/{0}/m3.txt ../metrics/{0}/'.format(file_date)
