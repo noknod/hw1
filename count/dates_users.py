@@ -72,7 +72,7 @@ def main():
             str_date_file = file_path.split('/')[-2]
 
             date_file = datetime.strptime(str_date_file, '%Y-%m-%d').date()
-            begin_date = date_file + timedelta(days=-14)
+            begin_date = date_file + timedelta(days=-13)
             if begin_date < START_DATE:
                 begin_date = START_DATE 
             print(date_file, begin_date)
@@ -81,7 +81,7 @@ def main():
             for n in range(int((date_file - begin_date).days)):
                 dummy = begin_date + timedelta(n)
                 previous_file_dates.append(
-                    'hdfs://user/yuklyushkin/hw1/metrics/{0}/users.txt'.format(dummy))
+                    'hdfs:///user/yuklyushkin/hw1/metrics/{0}/users.txt'.format(dummy))
             prevfiles = ','.join(previous_file_dates)
             #print(prevfiles)
 
@@ -99,18 +99,18 @@ def main():
                 break
             print '\ncomputed\n'
 
-            #dir_path = file_path.split('/')[-2]
-            #command = 'hdfs dfs -cp out/part-00000 hw1/metrics/{0}/users.txt'.format(dir_path)
-            #result_command = int(os.system(command))
-            #if result_command != 0:
-            #    print '\n\n++++++++++\n\nERROR\n\n++++++++++\n\n'
-            #    break
-            #add_dir_to_file(file_path, DONE_FILES_FILE)
+            dir_path = file_path.split('/')[-2]
+            command = 'hdfs dfs -cp out/part-00000 hw1/metrics/{0}/m4_1.txt'.format(dir_path)
+            result_command = int(os.system(command))
+            if result_command != 0:
+                print '\n\n++++++++++\n\nERROR\n\n++++++++++\n\n'
+                break
+            add_dir_to_file(file_path, DONE_FILES_FILE)
        
         #cnt += 1
         #if cnt == 4:     
         #    break
-        break
+        #break
     #"""
 
 
