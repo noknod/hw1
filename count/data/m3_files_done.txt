@@ -82,3 +82,4 @@
 /user/bigdatashad/logs/2017-10-02/access.log.2017-10-02
 /user/bigdatashad/logs/2017-10-03/access.log.2017-10-03
 /user/bigdatashad/logs/2017-10-04/access.log.2017-10-04
+/user/bigdatashad/logs/2017-11-11/access.log.2017-11-11
