@@ -78,7 +78,7 @@ def read_data_by_date(date_in):
                     print 'cntrs'
                     answer['users_by_country'] = cntrs
 
-            tmp = dir_path + M4_FILE
+            tmp = dir_path + M4_1_FILE
             if os.path.exists(tmp):
                 cntrs = {}
                 with open(tmp, 'r') as infile:
