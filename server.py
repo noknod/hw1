@@ -24,6 +24,7 @@ M3_FILE = 'm3.txt'
 
 M4_1_FILE = 'm4_1.txt'
 
+M4_2_FILE = 'm4_2.txt'
 
 
 def iterate_between_dates(start_date, end_date):
@@ -94,6 +95,20 @@ def read_data_by_date(date_in):
                             #cntrs[key] = int(value)
                             if m4_cnt == 0:
                                 answer['new_users'] = int(line)
+                            m4_cnt += 1
+
+            tmp = dir_path + M4_2_FILE
+            if os.path.exists(tmp):
+                cntrs = {}
+                with open(tmp, 'r') as infile:
+                    print ''
+                    m4_cnt = 0
+                    for row in infile.readlines():
+                        line = row.strip()
+                        if len(line) != 0:
+                            print line
+                            if m4_cnt == 0:
+                                answer['lost_users'] = int(line)
                             m4_cnt += 1
 
             print answer
