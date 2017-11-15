@@ -131,7 +131,5 @@ def count_referer_sessions(events):
     return referers.items()
 
 
-
 if __name__ == "__main__":
     main()
-
