@@ -11,7 +11,14 @@ def main():
     record_re = re.compile('([\d\.:]+) - - \[(\S+ [^"]+)\] "(\w+) ([^"]+) (HTTP/[\d\.]+)" (\d+) \d+ "([^"]+)" "([^"]+)"')
     total = 0
     for line in sys.stdin:
+        #try:
         match = record_re.match(line)
+        #except Exception:
+        #    is_parsed = False
+        #else:
+        #    is_parsed = True
+        #if not is_parsed:
+        #    continue
         if not match:
             continue
         if match.group(6) != "200":

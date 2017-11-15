@@ -19,10 +19,10 @@ def main():
         """ts_str = match.group(2)
         ts = ts_str.split('/')[2].split()[0][5:]
         """
-        #try:
-        ts = datetime.datetime.strptime(match.group(2), "%d/%b/%Y:%H:%M:%S")
-        #except ValueError:
-        #    continue
+        try:
+            ts = datetime.datetime.strptime(match.group(2), "%d/%b/%Y:%H:%M:%S")
+        except ValueError:
+            continue
         print "%s\t%s" % (ip_address, ts.strftime("%H:%M:%S"))
 
 

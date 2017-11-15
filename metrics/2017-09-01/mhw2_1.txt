@@ -1,0 +1,7 @@
+http://facebook.com/ 19328
+http://twitter.com/ 5726
+http://google.com/ 40208
+http://instagram.com/ 11979
+http://bing.com/ 12252
+- 5184224
+http://yandex.ru/yandsearch 25371

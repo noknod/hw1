@@ -14,7 +14,10 @@ def main():
         line = line.strip()
         if len(line) != 0:
             ip_address = line
-            country = ipcountry.which_country(ip_address)
+            try:
+                country = ipcountry.which_country(ip_address)
+            except:
+                continue
             print country + '\t1'
 
 
