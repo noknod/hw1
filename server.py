@@ -125,8 +125,8 @@ def read_data_by_date(date_in):
                             pos = line.rfind(' ')
                             key = line[:pos]
                             value = line[pos + 1:]
-                            if key != '-':
-                                referers[key] = int(value)
+                            #if key != '-':
+                            referers[key] = int(value)
                 if len(referers) != 0:
                     print 'referers'
                     answer['session_referers'] = referers
