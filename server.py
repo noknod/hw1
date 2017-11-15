@@ -26,6 +26,8 @@ M4_1_FILE = 'm4_1.txt'
 
 M4_2_FILE = 'm4_2.txt'
 
+MHW2_1_FILE = 'mhw2_1.txt'
+
 
 def iterate_between_dates(start_date, end_date):
     span = end_date - start_date
@@ -110,6 +112,24 @@ def read_data_by_date(date_in):
                             if m4_cnt == 0:
                                 answer['lost_users'] = int(line)
                             m4_cnt += 1
+
+            tmp = dir_path + MHW2_1_FILE
+            if os.path.exists(tmp):
+                referers = {}
+                with open(tmp, 'r') as infile:
+                    print ''
+                    for row in infile.readlines():
+                        line = row.strip()
+                        if len(line) != 0:
+                            print line
+                            pos = line.rfind(' ')
+                            key = line[:pos]
+                            value = line[pos + 1:]
+                            if key != '-':
+                                referers[key] = int(value)
+                if len(referers) != 0:
+                    print 'referers'
+                    answer['session_referers'] = referers
 
             print answer
         else:
