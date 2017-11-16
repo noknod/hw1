@@ -8,7 +8,7 @@ from datetime import datetime
 from datetime import timedelta
 
 
-TEMPLATE = """
+WRONG_TEMPLATE = """
 #!/usr/bin/env bash
 
 OUT_DIR=out
@@ -20,9 +20,34 @@ hdfs dfs -rm -r -skipTrash out
 yarn jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-streaming.jar \
     -D mapreduce.job.name="Uniq users dates" \
     -D mapreduce.job.reduces=$NUM_REDUCERS \
-     -D mapreduce.job.maps=50 \
+    -D mapreduce.job.maps=50 \
     -files new_facebook_users_mapper.py,new_facebook_users_reducer.py,dates_users.dat \
     -mapper "./new_facebook_users_mapper.py" \
+    -reducer "./new_facebook_users_reducer.py" \
+    -input hdfs://{0}{1} \
+    -output out
+"""
+
+TEMPALTE = """
+#!/usr/bin/env bash
+
+OUT_DIR=out
+NUM_REDUCERS=1 # > 0 to run the Reduce phase
+CONFIG="--config /home/agorokhov/conf.empty"
+
+hdfs dfs -rm -r -skipTrash out
+
+yarn jar /opt/hadoop/hadoop-streaming.jar \
+    -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator \
+    -D mapred.text.key.comparator.options=-k1,2 \
+    -D stream.num.map.output.key.fields=4 \
+    -D mapred.text.key.partitioner.options=-k1,1 \
+    -D mapreduce.job.reduces=1 \
+    -D mapreduce.job.maps=50 \
+
+    -files new_facebook_users_mapper.py,new_facebook_users_reducer.py,dates_users.dat \
+    -mapper "./new_facebook_users_mapper.py" \
+    -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
     -reducer "./new_facebook_users_reducer.py" \
     -input hdfs://{0}{1} \
     -output out
