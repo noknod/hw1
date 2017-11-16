@@ -74,7 +74,7 @@ def extract_fields(line):
         return
 
     try:
-        ts = datetime.datetime.strptime(match.group(2), "%d/%b/%Y:%H:%M:%S")
+        timestamp = datetime.datetime.strptime(match.group(2), "%d/%b/%Y:%H:%M:%S")
     except ValueError:
         return
 

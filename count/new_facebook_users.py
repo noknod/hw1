@@ -92,7 +92,7 @@ def main():
             if len(prevfiles) != 0:
                 prevfiles = ',' + prevfiles
             command = TEMPLATE.format(date_file_path, prevfiles)
-            print(command)
+            #print(command)
             result_code = int(os.system(command))
             if result_code != 0:
                 print '\n\n*********\n\nERROR\n\n*********\n\n'
@@ -107,9 +107,9 @@ def main():
                 break
             add_dir_to_file(file_path, DONE_FILES_FILE)
        
-        cnt += 1
-        if cnt == 4:     
-            break
+        #cnt += 1
+        #if cnt == 4:     
+        #    break
         break
     #"""
 
