@@ -39,16 +39,25 @@ def main():
     #        print '\t', q
     #print '\n***\n'
 
+    sessions = ips_grouped.flatMapValues(count_referer_sessions).map(lambda x: (x[1][0], x[1][1]))
+    #print '\n***\n'
+    #for row in sessions.collect():
+    #    print row#[0]
+    #    #for q in row[1]:
+    #    #    print '\t', q
+    #print '\n***\n'
 
-    sessions = ips_grouped.flatMapValues(count_referer_sessions)
+    #sessions = ips_grouped.flatMapValues(count_referer_sessions)
     #print "**********\nReferers count: %d\n**********" % ips_grouped.count()
     #print sessions.take(10)
-    referers = sessions.map(lambda x: x[1]).groupByKey().mapValues(sum)
-     
+    ##referers = sessions.map(lambda x: (x[1][0], x[1][1])).reduceByKey(lambda a, b: a + b)#sum)#.groupByKey().mapValues(sum)
+    sessions.persist()
+    referers = sessions.reduceByKey(lambda a, b: a + b)   
+
+    ##out_file_path = '/user/yuklyushkin/hw2/metrics/{0}'.format(date_str)
+
+    ##referers.saveAsTextFile(out_file_path)
     #for referer in referers.collect():
-    #    print referer
-    
-    #for rerefer in referers.collect():
     #    print referer
     # use sessions.fold(...) to sum for all keys
     #referers.saveAsTextFile('/user/yuklyushkin/hw2/metrics/m1_cur.txt')
@@ -63,6 +72,7 @@ def main():
             #print referer[1]
             outfile.write(str(referer[1]))
             is_was = True
+   
 
 
 LOG_LINE_RE = re.compile('([\d\.:]+) - - \[(\S+) [^"]+\] "(\w+) ([^"]+) (HTTP/[\d\.]+)" (\d+) \d+ "([^"]+)" "([^"]+)"')
@@ -78,7 +88,7 @@ def extract_fields(line):
             return
         ip = match.group(1)
         date = datetime.datetime.strptime(match.group(2), "%d/%b/%Y:%H:%M:%S")
-        url = match.group(4)
+        #url = match.group(4)
         referer = match.group(7)
         timestamp = int(date.strftime("%s"))
         #print '\t', referer
@@ -104,22 +114,31 @@ def count_referer_sessions(events):
     #hits = 0
     last_referer = None
     referers = {}
+    is_first = None
 
     for event in events:
         timestamp, referer = event
 
         if not start_timestamp:
             start_timestamp = last_timestamp = timestamp
-            last_referer = referer            
+            last_referer = referer
+            is_first = True
 
-        elif timestamp - last_timestamp > TIME_TO or referer != last_referer:
+        elif timestamp == last_timestamp: 
+            if is_first and last_referer < referer:
+                last_referer = referer
+
+        elif timestamp - last_timestamp > TIME_TO: # or referer != last_referer:
             #sessions += 1
             #sessions_length += last_timestamp - start_timestamp
             referers[last_referer] = referers.get(last_referer, 0) + 1
             start_timestamp = timestamp
             last_referer = referer
+            is_first = True
 
         last_timestamp = timestamp
+        is_first = False
+        #last_referer = referer
         #hits = hit # += 1
 
     #sessions += 1
@@ -128,8 +147,14 @@ def count_referer_sessions(events):
     if last_referer is not None:
         referers[last_referer] = referers.get(last_referer, 0) + 1
 
+    #answer = []
+    #for key, value in referers.items():
+    #    answer.append(key, value)
+    #return answer
     return referers.items()
+
 
 
 if __name__ == "__main__":
     main()
+

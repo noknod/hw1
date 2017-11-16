@@ -65,7 +65,7 @@ def main():
             with open('date.txt', 'w') as outfile:
                 outfile.write(dir_path)
             #command = TEMPLATE.format(file_path)
-            command = 'spark-submit --master yarn --num-executors 8 m1_spark.py'
+            command = 'spark-submit --master yarn --num-executors 8 --conf "spark.yarn.executor.memoryOverhead=1024" m1_spark.py'
             result_code = int(os.system(command))
             if result_code != 0:
                 print '\n\n*********\n\nERROR\n\n*********\n\n'

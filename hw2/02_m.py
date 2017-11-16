@@ -56,16 +56,16 @@ def main():
 
     for file_path in all_files:
         if file_path not in done_files:
-            #if file_path.split('/')[-2] > '2017-09-10':
+            #if file_path.split('/')[-2] > '2017-10-10':
             #    break
-            if file_path.split('/')[-2] < '2017-11-13':
+            if file_path.split('/')[-2] < '2017-11-01':
                 continue
             print(file_path)
             dir_path = file_path.split('/')[-2]
             with open('date.txt', 'w') as outfile:
                 outfile.write(dir_path)
             #command = TEMPLATE.format(file_path)
-            command = 'spark-submit --master yarn --num-executors 8 m2_spark.py'
+            command = 'spark-submit --master yarn --num-executors 8 --conf "spark.yarn.executor.memoryOverhead=1024" m2_spark.py'
             result_code = int(os.system(command))
             if result_code != 0:
                 print '\n\n*********\n\nERROR\n\n*********\n\n'
