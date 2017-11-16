@@ -4,6 +4,7 @@
 import sys
 import os
 import re
+import datetime
 
 
 LOG_LINE_RE = re.compile('([\d\.:]+) - - \[(\S+) [^"]+\] "(\w+) ([^"]+) (HTTP/[\d\.]+)" (\d+) \d+ "([^"]+)" "([^"]+)"')
@@ -22,9 +23,16 @@ def main():
     #if filename.endswith('users.txt'):
         #date_file = filename.split('/')[-2]
         for line in sys.stdin:
-            ip_address = extract_fields(line)            
-            if not ip_address is None:
-                print ip_address + '\t2'
+            answer = extract_fields(line)
+            if answer is None:
+                continue
+
+            ip_address = answer[0]
+            timestamp = answer[1]
+            referer = answer[2]
+
+            result = '{0}\t2{1} {2}'.format(ip_address, timestamp.strftime("%H:%M:%S"), referer)
+            print result
 
     else:
         for line in sys.stdin:
@@ -65,13 +73,18 @@ def extract_fields(line):
     if not resource.startswith('/'):
         return
 
+    try:
+        ts = datetime.datetime.strptime(match.group(2), "%d/%b/%Y:%H:%M:%S")
+    except ValueError:
+        return
+
     referer = match.group(7)
-    if referer.lower().find('facebook') == -1:
-        return None
+    #if referer.lower().find('facebook') == -1:
+    #    return None
 
     ip_address = match.group(1)
 
-    return ip_address
+    return (ip_address, timestamp, referer)
 
 
 if __name__ == '__main__':
