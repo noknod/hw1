@@ -31,14 +31,14 @@ def main():
             timestamp = answer[1]
             referer = answer[2]
 
-            result = '{0}\t2{1} {2}'.format(ip_address, timestamp.strftime("%H:%M:%S"), referer)
+            result = '{0}\t{1}\t{2}\t2'.format(ip_address, timestamp.strftime("%H:%M:%S"), referer)
             print result
 
     else:
         for line in sys.stdin:
             line = line.strip()
             if len(line) != 0:
-                print line + '\t1'
+                print line + '\t00:00:00\t<null>\t1'
 
 
 def extract_fields(line):
