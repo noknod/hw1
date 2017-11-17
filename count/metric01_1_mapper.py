@@ -6,7 +6,7 @@ import re
 import datetime
 
 
-LOG_LINE_RE = re.compile('^([\d\.:]+) - - \[(\S+) [^"]+\] "(\w+) ([^"]+) (HTTP/[\d\.]+)" (\d+) \d+ "([^"]+)" "([^"]+)"$')
+LOG_LINE_RE = re.compile('^([\d\.:]+) - - \[(\S+) [^"]+\] "(\w+) ([^"]+) (HTTP/[\d\.]+)" (\d+) \d+ "([^"]+)" "([^"]+)"')
 
 
 def extract_fields(line):
@@ -31,11 +31,11 @@ def extract_fields(line):
     if not resource.startswith('/'):
         return
 
-    referer = match.group(7)
+    #referer = match.group(7)
 
-    time = date.strftime("%H:%M:%S")
+    #time = date.strftime("%H:%M:%S")
 
-    return (ip, time, resource, referer)
+    return ip
 
 # 196.223.28.31 - - [16/Nov/2015:00:00:00 +0400] "GET /photo/manage.cgi HTTP/1.1" 200 0 "-" "Mozilla/6.66"
 
@@ -43,9 +43,11 @@ def main():
     total = 0
     for line in sys.stdin:
         answer = extract_fields(line)
-        if not answer is None:
-            print answer[0], 1
-            total += 1
+        if answer is None:
+            continue
+
+        print answer, 1
+        total += 1
     #print 'total', total
     """
     current_key = None

@@ -54,6 +54,8 @@ def extract_fields(line):
     if url.lower().find('/signup') == -1:
         return
 
+    ip_address = match.group(1)
+
     return ip_address
 
 

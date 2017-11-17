@@ -12,6 +12,8 @@ def main():
     uniq_cnt = 0
     total_hits = 0
     for line in sys.stdin:
+        if len(line.strip()) == '':
+            continue
         key, value = line.split()
         total_hits += 1
         if current_key is None:

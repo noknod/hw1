@@ -13,6 +13,8 @@ def main():
         if len(line) == 0:
             continue
 
+        key = line
+
         if current_key is None:
             current_key = key
 
