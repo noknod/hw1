@@ -26,6 +26,8 @@ M4_1_FILE = 'm4_1.txt'
 
 M4_2_FILE = 'm4_2.txt'
 
+M5_FILE = 'm5.txt'
+
 MHW2_1_FILE = 'mhw2_1.txt'
 
 MHW2_2_FILE = 'mhw2_2.txt'
@@ -145,6 +147,20 @@ def read_data_by_date(date_in):
                             print line
                             if m4_cnt == 0:
                                 answer['profile_liked_three_days'] = int(line)
+                            m4_cnt += 1
+
+            tmp = dir_path + M5_FILE
+            if os.path.exists(tmp):
+                referers = {}
+                with open(tmp, 'r') as infile:
+                    print ''
+                    m4_cnt = 0
+                    for row in infile.readlines():
+                        line = row.strip()
+                        if len(line) != 0:
+                            print line
+                            if m4_cnt == 0:
+                                answer['facebook_signup_conversion_3'] = float(line)
                             m4_cnt += 1
 
             print answer
