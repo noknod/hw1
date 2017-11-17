@@ -19,12 +19,18 @@ def main():
     #new_cnt = 0
     #hits = []
     first_referer = None
+    cnt = 0
     for line in sys.stdin:
-        line = line.strip()
-        if len(line) == 0:
-            continue
+        if cnt <= 100:
+            print line
+        cnt += 1
+        #line = line.strip()
+        #if len(line) == 0:
+        #    continue
+        
+        #print line
         #key, new_date, last_date, value = line.split('\t')
-        key, timestamp, referer, value = line.split('\t')
+        """key, timestamp, referer, value = line.split('\t')
 
         if current_key is None:
             current_key = key
@@ -104,9 +110,10 @@ def main():
 
             else:
                 print 1 / 0
+        """
         
 
-
+    """
     #if not current_key is None and is_new and not is_was_before:  # and current_value == 2:
     if not current_key is None and is_new and not is_was_before and first_referer:  # and current_value == 2:
         #print current_key, date_new_date, date_last_date
@@ -114,6 +121,7 @@ def main():
         print current_key
         #for row in hits:
         #    print row[0], row[1], row[2]
+    """"
 
     #print new_cnt
 

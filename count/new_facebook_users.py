@@ -28,7 +28,7 @@ yarn jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-streaming.jar \
     -output out
 """
 
-TEMPALTE = """
+TEMPLATE = """
 #!/usr/bin/env bash
 
 OUT_DIR=out
@@ -40,11 +40,10 @@ hdfs dfs -rm -r -skipTrash out
 yarn jar /opt/hadoop/hadoop-streaming.jar \
     -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator \
     -D mapred.text.key.comparator.options=-k1,2 \
-    -D stream.num.map.output.key.fields=4 \
+    -D stream.num.map.output.key.fields=2 \
     -D mapred.text.key.partitioner.options=-k1,1 \
     -D mapreduce.job.reduces=1 \
     -D mapreduce.job.maps=50 \
-
     -files new_facebook_users_mapper.py,new_facebook_users_reducer.py,dates_users.dat \
     -mapper "./new_facebook_users_mapper.py" \
     -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
