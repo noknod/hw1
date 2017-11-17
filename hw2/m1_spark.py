@@ -95,7 +95,7 @@ def extract_fields(line):
         #return ((ip, timestamp), (timestamp, 1))
         return ((ip, timestamp), (timestamp, referer))
     except Exception, e:
-        print e
+        #print e
         return
 
 
