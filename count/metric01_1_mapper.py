@@ -31,7 +31,9 @@ def extract_fields(line):
     if not resource.startswith('/'):
         return
 
-    #referer = match.group(7)
+    referer = match.group(7)
+    if not refer.startswith('/'):
+        return
 
     #time = date.strftime("%H:%M:%S")
 
