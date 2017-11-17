@@ -1,9 +1,13 @@
-#!/usr/bin/env python
+#!/shared/anaconda/bin/python
 
 
 import sys
 import re
 import datetime
+
+
+sys.path.append('.')
+import ipcountry
 
 
 LOG_LINE_RE = re.compile('^([\d\.:]+) - - \[(\S+) [^"]+\] "(\w+) ([^"]+) (HTTP/[\d\.]+)" (\d+) \d+ "([^"]+)" "([^"]+)"')
@@ -20,7 +24,10 @@ def extract_fields(line):
         return
     
     ip = match.group(1)
-    country = ipcountry.which_country(ip_address)
+    try:
+        country = ipcountry.which_country(ip)
+    except:
+        return
     if country == '-':
         return
 
