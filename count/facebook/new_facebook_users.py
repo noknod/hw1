@@ -92,6 +92,10 @@ def main():
     cnt = 0
     for file_path in all_files:
         if file_path not in done_files:
+
+            if file_path.split('/')[-2] > '2017-09-05':
+                break
+
             print(file_path)
             str_date_file = file_path.split('/')[-2]
 
@@ -134,7 +138,7 @@ def main():
         #cnt += 1
         #if cnt == 4:     
         #    break
-        break
+        #break
     #"""
 
 
