@@ -70,7 +70,7 @@ def main():
             if result_command != 0:
                 print '\n\n++++++++++\n\nERROR\n\n++++++++++\n\n'
                 break
-            add_dir_to_file(file_path, DONE_FILES_FILE)
+            #add_dir_to_file(file_path, DONE_FILES_FILE)
             
         #break
 

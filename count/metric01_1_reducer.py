@@ -12,7 +12,7 @@ def main():
     uniq_cnt = 0
     total_hits = 0
     for line in sys.stdin:
-        if len(line.strip()) == '':
+        if len(line.strip()) == 0:
             continue
         key, value = line.split()
         total_hits += 1
