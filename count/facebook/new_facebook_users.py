@@ -91,6 +91,7 @@ def main():
     #"""
     cnt = 0
     for file_path in all_files:
+        if file_path not in done_files:
 
             if file_path.split('/')[-2] > '2017-09-05':
                 break
