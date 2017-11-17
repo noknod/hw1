@@ -20,7 +20,7 @@ hdfs dfs -rm -r -skipTrash out
 yarn jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-streaming.jar \
     -D mapreduce.job.name="Uniq users step1" \
     -D mapreduce.job.reduces=$NUM_REDUCERS \
-    -files metric01_1_mapper.py,metric01_1_reducer.py \
+    -files metric01_1_mapper.py,metric01_1_reducer.py,IP2LOCATION-LITE-DB1.CSV,ipcountry.py \
     -mapper "./metric01_1_mapper.py" \
     -reducer "./metric01_1_reducer.py" \
     -input hdfs://{0} \

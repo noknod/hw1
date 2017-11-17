@@ -6,7 +6,7 @@ import sys
 import pandas as pd
 
 
-NOT_FOUNDED = '<NOT FOUNDED>'
+NOT_FOUNDED = '-'
 
 
 sys.path.append('.')

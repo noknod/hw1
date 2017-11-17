@@ -20,6 +20,9 @@ def extract_fields(line):
         return
     
     ip = match.group(1)
+    country = ipcountry.which_country(ip_address)
+    if country == '-':
+        return
 
     date_str = match.group(2)
     try:
