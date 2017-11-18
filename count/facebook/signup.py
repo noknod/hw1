@@ -66,8 +66,9 @@ def main():
     for file_path in all_files:
         if file_path not in done_files:
 
-            if file_path.split('/')[-2] > '2017-09-05':
-                break
+            if file_path.split('/')[-2] < '2017-11-10':
+                #break
+                continue
 
             print(file_path)
             str_date_file = file_path.split('/')[-2]

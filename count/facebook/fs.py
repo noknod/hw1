@@ -24,7 +24,7 @@ yarn jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-streaming.jar \
     -files fs_mapper.py,fs_reducer.py,dates_users.dat \
     -mapper "./fs_mapper.py" \
     -reducer "./fs_reducer.py" \
-    -input hdfs://{0}{1} \
+    -input {0} \
     -output out
 """
 
@@ -87,7 +87,8 @@ def main():
             for n in range(int((date_file - begin_date).days)):
                 dummy = begin_date + timedelta(n)
                 previous_file_dates.append(
-                    'hdfs:///user/yuklyushkin/hw1/metrics/{0}/new_facebook_users.txt'.format(dummy),                    
+                    'hdfs:///user/yuklyushkin/hw1/metrics/{0}/new_facebook_users.txt'.format(dummy))
+                previous_file_dates.append(
                     'hdfs:///user/yuklyushkin/hw1/metrics/{0}/signup.txt'.format(dummy))
             prevfiles = ','.join(previous_file_dates)
             #print(prevfiles)
