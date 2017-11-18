@@ -6,7 +6,7 @@ import os
 import re
 
 
-LOG_LINE_RE = re.compile('([\d\.:]+) - - \[(\S+) [^"]+\] "(\w+) ([^"]+) (HTTP/[\d\.]+)" (\d+) \d+ "([^"]+)" "([^"]+)"')
+LOG_LINE_RE = re.compile('^([\d\.:]+) - - \[(\S+) [^"]+\] "(\w+) ([^"]+) (HTTP/[\d\.]+)" (\d+) \d+ "([^"]+)" "([^"]+)"')
 
 
 def main():
@@ -46,9 +46,9 @@ def extract_fields(line):
     if match.group(6) != "200":
         return
 
-    resource = match.group(4)
-    if not resource.startswith('/'):
-        return
+    #resource = match.group(4)
+    #if not resource.startswith('/'):
+    #    return
 
     url = match.group(4)
     if url.lower().find('/signup') == -1:

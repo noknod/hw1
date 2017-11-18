@@ -28,7 +28,7 @@ def main():
             current_key = key
             is_new = False
             is_was_before = False
-            first_referer = False
+            first_referer = []
             first_timestamp = None
 
             if value == '1':
@@ -36,20 +36,23 @@ def main():
 
             elif value == '2':
                 is_new = True
-                first_referer = (referer.lower().find('facebook') != -1)
+                #first_referer.append(referer)# = (referer.lower().find('facebook') != -1)
                 first_timestamp = timestamp
+                first_referer = referer
 
             else:
                 print 1 / 0
 
         elif current_key != key:
-            if is_new and not is_was_before and first_referer:
-                print current_key
+            if is_new and not is_was_before:# and first_referer:
+                #fr = max(first_referer)
+                if first_referer.lower().find('facebook') != -1:
+                    print current_key
 
             current_key = key
             is_new = False
             is_was_before = False
-            first_referer = False
+            first_referer = None
             first_timestamp = None
 
             if value == '1':
@@ -57,7 +60,8 @@ def main():
 
             elif value == '2':
                 is_new = True
-                first_referer = (referer.lower().find('facebook') != -1)
+                #first_referer.append(referer)# = (referer.lower().find('facebook') != -1)
+                first_referer = referer
                 first_timestamp = timestamp
 
             else:
@@ -70,17 +74,25 @@ def main():
             elif value == '2':
                 is_new = True
                 if first_timestamp is None:
-                    first_referer = (referer.lower().find('facebook') != -1)
+                    #first_referer.append(referer)# = (referer.lower().find('facebook') != -1)
+                    first_referer = referer
                     first_timestamp = timestamp
                 elif first_timestamp == timestamp:
-                    if (referer.lower().find('facebook') != -1):
-                        first_referer = True
+                    #first_referer.append(referer)
+                    if first_referer < referer:
+                        first_referer = referer
+                    #if (referer.lower().find('facebook') != -1):
+                    #    first_referer = True
 
             else:
                 print 1 / 0
 
-    if not current_key is None and is_new and not is_was_before and first_referer:
-        print current_key
+    if not current_key is None and is_new and not is_was_before:# and first_referer:
+        #fr = max(first_referer)
+        if first_referer.lower().find('facebook') != -1:
+            print current_key
+
+        #print current_key
 
 
 if __name__ == '__main__':

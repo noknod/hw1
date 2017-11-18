@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/shared/anaconda/bin/python
 
 
 import sys
@@ -16,19 +16,11 @@ def main():
         if current_key is None:
             current_key = key
         elif current_key != key:
-            try:
-                country = ipcountry.which_country(ip)
-                print current_key
-            except:
-                pass
+            print current_key
             current_key = key
 
     if not current_key is None:
-        try:
-            country = ipcountry.which_country(ip)
-            print current_key
-        except:
-            pass
+        print current_key
 
 
 if __name__ == '__main__':
