@@ -17,6 +17,8 @@ def main():
     #cnt = 0
     for line in sys.stdin:
         line = line.strip()
+        #print line
+        #continue
         if len(line) == 0:
             continue
 
@@ -87,6 +89,7 @@ def main():
         print 1.0 * signup_cnt / total_cnt
     else:
         print 0.0
+
 
 if __name__ == '__main__':
     main()

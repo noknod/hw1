@@ -3,7 +3,7 @@
 import os
 
 
-ALL_FILES_FILE = '../count/data/m5_files_done.txt'
+ALL_FILES_FILE = '../count/data/fs_files_done.txt'
 
 DONE_FILES_FILE = './data/m5_files_done.txt'
 
@@ -36,7 +36,7 @@ def main():
             #    continue
             print(file_path)
             file_date = file_path.split('/')[-2]
-            command = 'hdfs dfs -get hw1/metrics/{0}/fs.txt ../metrics/{0}/m5_text'.format(file_date)
+            command = 'hdfs dfs -get hw1/metrics/{0}/fs.txt ../metrics/{0}/m5.txt'.format(file_date)
             result_command = int(os.system(command))
             if result_command != 0:
                 print '\n\n++++++++++\n\nERROR\n\n++++++++++\n\n'

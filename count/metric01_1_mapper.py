@@ -24,17 +24,17 @@ def extract_fields(line):
         return
     
     ip = match.group(1)
-    try:
-        country = ipcountry.which_country(ip)
-    except:
-        return
-    if country == '-':
-        return
+    #try:
+    #    country = ipcountry.which_country(ip)
+    #except:
+    #    return
+    #if country == '-':
+    #    return
 
     date_str = match.group(2)
     try:
         date = datetime.datetime.strptime(date_str, "%d/%b/%Y:%H:%M:%S")
-    except e:
+    except:
         return
 
     resource = match.group(4)

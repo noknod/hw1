@@ -84,7 +84,7 @@ def main():
             print(date_file, begin_date)
 
             previous_file_dates = []
-            for n in range(int((date_file - begin_date).days)):
+            for n in range(int((date_file - begin_date).days) + 1):
                 dummy = begin_date + timedelta(n)
                 previous_file_dates.append(
                     'hdfs:///user/yuklyushkin/hw1/metrics/{0}/new_facebook_users.txt'.format(dummy))

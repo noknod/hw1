@@ -1,0 +1,4 @@
+France 72132	
+Germany 63240	
+Russian Federation 152921	
+United Kingdom 12671	

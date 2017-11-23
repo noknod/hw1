@@ -76,3 +76,8 @@
 /user/bigdatashad/logs/2017-11-15/access.log.2017-11-15
 /user/bigdatashad/logs/2017-11-16/access.log.2017-11-16
 /user/bigdatashad/logs/2017-11-17/access.log.2017-11-17
+/user/bigdatashad/logs/2017-11-18/access.log.2017-11-18
+/user/bigdatashad/logs/2017-11-19/access.log.2017-11-19
+/user/bigdatashad/logs/2017-11-20/access.log.2017-11-20
+/user/bigdatashad/logs/2017-11-21/access.log.2017-11-21
+/user/bigdatashad/logs/2017-11-22/access.log.2017-11-22

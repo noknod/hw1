@@ -19,7 +19,7 @@ def main():
     filename = os.environ['map_input_file']
     date_file = filename.split('/')[-2]
 
-    if filename.endswith('signup.txt'):
+    if filename.find('signup') != -1:
 
         if use_date_file == date_file:
             for line in sys.stdin:
