@@ -16,7 +16,7 @@ HADOOP_HW1_METRICS_PATH = 'hw1/metrics/{0}'
 
 GENERATE_FROM = datetime.date(2017, 10, 29)
 
-GENERATE_TO = datetime.date(2017, 11, 25)
+GENERATE_TO = datetime.date(2017, 12, 31)
 
 TEMPLATE_FOR_GENERATE = '/user/bigdatashad/logs/{0}'
 
