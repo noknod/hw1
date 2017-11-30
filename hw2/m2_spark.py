@@ -111,6 +111,11 @@ def extract_fields(line):
     if match.group(6) != "200":
         return
 
+    #try:
+    #    date_str = datetime.datetime.strptime(match.group(2), "%d/%b/%Y:%H:%M:%S")
+    #except:
+    #    return
+
     resource = match.group(4)
     #print '\t', query
     #print('\t', resource)

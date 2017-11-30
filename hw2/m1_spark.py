@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/shared/anaconda/bin/python
 
 
 import os
@@ -7,6 +7,11 @@ import re
 
 from pyspark import SparkConf, SparkContext
 from operator import add
+
+
+#import sys
+#sys.path.append('.')
+#import ipcountry
 
 
 def main():
@@ -75,12 +80,13 @@ def main():
    
 
 
-LOG_LINE_RE = re.compile('([\d\.:]+) - - \[(\S+) [^"]+\] "(\w+) ([^"]+) (HTTP/[\d\.]+)" (\d+) \d+ "([^"]+)" "([^"]+)"')
+LOG_LINE_RE = re.compile('^([\d\.:]+) - - \[(\S+) [^"]+\] "(\w+) ([^"]+) (HTTP/[\d\.]+)" (\d+) \d+ "([^"]+)" "([^"]+)"')
 
 
 def extract_fields(line):
     #print line
-    try:
+    """
+    #try:
         match = LOG_LINE_RE.search(line.strip())
         if not match:
            return
@@ -90,13 +96,43 @@ def extract_fields(line):
         date = datetime.datetime.strptime(match.group(2), "%d/%b/%Y:%H:%M:%S")
         #url = match.group(4)
         referer = match.group(7)
+        
         timestamp = int(date.strftime("%s"))
         #print '\t', referer
         #return ((ip, timestamp), (timestamp, 1))
         return ((ip, timestamp), (timestamp, referer))
-    except Exception, e:
-        #print e
+    #except Exception, e:
+    #    #print e
+    #    return
+    """
+    match = LOG_LINE_RE.search(line.strip())
+    if not match:
         return
+    if match.group(6) != "200":
+        return
+    ip = match.group(1)
+
+    #try:
+    #    country = ipcountry.which_country(ip)
+    #except:
+    #    return
+    #if country == '-':
+    #    return
+
+    try:
+        date = datetime.datetime.strptime(match.group(2), "%d/%b/%Y:%H:%M:%S")
+    except:
+        return
+
+    url = match.group(4)
+    if not url.startswith('/'):
+        return
+
+    referer = match.group(7)
+        
+    timestamp = int(date.strftime("%s"))
+
+    return ((ip, timestamp), (timestamp, referer))
 
 
 def tuple_partitioner(pair):
@@ -115,6 +151,7 @@ def count_referer_sessions(events):
     last_referer = None
     referers = {}
     is_first = None
+    first_timestamp = None
 
     for event in events:
         timestamp, referer = event
@@ -123,9 +160,12 @@ def count_referer_sessions(events):
             start_timestamp = last_timestamp = timestamp
             last_referer = referer
             is_first = True
+            first_timestamp = timestamp
 
-        elif timestamp == last_timestamp: 
-            if is_first and last_referer < referer:
+        #elif timestamp == last_timestamp: 
+        elif timestamp == first_timestamp:
+            #if is_first and last_referer > referer:
+            if last_referer < referer:
                 last_referer = referer
 
         elif timestamp - last_timestamp > TIME_TO: # or referer != last_referer:
@@ -135,6 +175,7 @@ def count_referer_sessions(events):
             start_timestamp = timestamp
             last_referer = referer
             is_first = True
+            first_timestamp = timestamp
 
         last_timestamp = timestamp
         is_first = False
