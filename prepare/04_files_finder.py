@@ -3,6 +3,7 @@
 import os
 import sys
 import re
+import datetime
 
 
 ALL_FILES_FILE = './data/all_files.txt'
@@ -78,8 +79,13 @@ def main():
     print 'All dirs {0}, done {1} files'.format(len(done_dirs), len(done_files))
 
     cnt = 0
+    now_date_str = datetime.datetime.now().strftime('%Y-%m-%d')
     for hadoop_logs_dir in done_dirs:
         if hadoop_logs_dir not in done_files:
+            date_str = hadoop_logs_dir.split('/')[-1]
+            print(date_str)
+            if now_date_str == date_str:
+                break
 	    print hadoop_logs_dir
             new_files = find_new_files(hadoop_logs_dir, ALL_FILES_FILE, DONE_FILES_FILE)
             print 'Found {0} new files\n'.format(len(new_files))
