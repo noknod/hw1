@@ -48,13 +48,14 @@ def read_data_by_date(date_in):
         answer = {}
 
         if os.path.exists(dir_path):
-            with open(dir_path + M1_FILE, 'r') as infile:
-                for row in infile.readlines():
-                    line = row.strip()
-                    if len(line) != 0:
-                        print line
-                        parts = line.split()
-                        answer[parts[0]] = int(parts[1])
+            if os.path.exists(dir_path + M1_FILE):
+                with open(dir_path + M1_FILE, 'r') as infile:
+                    for row in infile.readlines():
+                        line = row.strip()
+                        if len(line) != 0:
+                            print line
+                            parts = line.split()
+                            answer[parts[0]] = int(parts[1])
 
             tmp = dir_path + M2_FILE
             if os.path.exists(tmp):

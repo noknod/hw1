@@ -1,0 +1,4 @@
+France 736800	
+Germany 607290	
+Russian Federation 1647610	
+United Kingdom 234960	

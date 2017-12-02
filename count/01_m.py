@@ -11,11 +11,11 @@ import re
 TEMPLATE = """
 #!/usr/bin/env bash
 
-OUT_DIR=out
+OUT_DIR=out1
 NUM_REDUCERS=1 # > 0 to run the Reduce phase
 CONFIG="--config /home/agorokhov/conf.empty"
 
-hdfs dfs -rm -r -skipTrash out
+hdfs dfs -rm -r -skipTrash out1
 
 yarn jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-streaming.jar \
     -D mapreduce.job.name="Uniq users step1" \
@@ -25,7 +25,7 @@ yarn jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-streaming.jar \
     -mapper "./metric01_1_mapper.py" \
     -reducer "./metric01_1_reducer.py" \
     -input hdfs://{0} \
-    -output out
+    -output out1
 """
 
 
@@ -66,7 +66,7 @@ def main():
             print '\ncomputed\n'
 
             dir_path = file_path.split('/')[-2]
-            command = 'hdfs dfs -cp out/part-00000 hw1/metrics/{0}/m1_1_2.txt'.format(dir_path)
+            command = 'hdfs dfs -cp out1/part-00000 hw1/metrics/{0}/m1_1_2.txt'.format(dir_path)
             result_command = int(os.system(command))
             if result_command != 0:
                 print '\n\n++++++++++\n\nERROR\n\n++++++++++\n\n'

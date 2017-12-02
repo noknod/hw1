@@ -1,0 +1,4 @@
+France 510120	
+Germany 472530	
+Russian Federation 1084387	
+United Kingdom 125541	
