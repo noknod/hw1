@@ -74,7 +74,8 @@ def main():
     """
 
     liked_users_count = liked_users.count()
-    with open('../hw1/hw1/metrics/{0}/mhw2_2.txt'.format(date_str), 'w') as outfile:
+    #with open('../hw1/hw1/metrics/{0}/mhw2_2.txt'.format(date_str), 'w') as outfile:
+    with open('../metrics/{0}/mhw2_2.txt'.format(date_str), 'w') as outfile:
         outfile.write(str(liked_users_count))
 
     sc.stop()    

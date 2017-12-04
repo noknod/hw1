@@ -28,7 +28,7 @@ yarn jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-streaming.jar \
 """
 
 
-ALL_FILES_FILE = '../prepare/data/all_files.txt'
+ALL_FILES_FILE = '../hw1/hw1/prepare/data/all_files.txt'
 
 DONE_FILES_FILE = './data/m2_files_done.txt'
 
@@ -73,7 +73,7 @@ def main():
             print '\ncomputed\n'
 
             dir_path = file_path.split('/')[-2]
-            out_file = '../metrics/{0}/mhw2_2.txt'.format(dir_path)
+            out_file = '../hw1/hw1/metrics/{0}/mhw2_2.txt'.format(dir_path)
             command = 'hdfs dfs -put {0} hw1/metrics/{1}/mhw2_2.txt'.format(out_file, dir_path)
             result_command = int(os.system(command))
             if result_command != 0:

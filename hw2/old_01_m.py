@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/shared/anaconda/bin/python
 
 
 import os
@@ -20,7 +20,7 @@ hdfs dfs -rm -r -skipTrash out
 yarn jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-streaming.jar \
     -D mapreduce.job.name="Uniq users step1" \
     -D mapreduce.job.reduces=$NUM_REDUCERS \
-    -files metric01_1_mapper.py,metric01_1_reducer.py \
+    -files metric01_1_mapper.py,metric01_1_reducer.py,IP2LOCATION-LITE-DB1.CSV,ipcountry.py \
     -mapper "./metric01_1_mapper.py" \
     -reducer "./metric01_1_reducer.py" \
     -input hdfs://{0} \
@@ -28,9 +28,9 @@ yarn jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-streaming.jar \
 """
 
 
-ALL_FILES_FILE = '../prepare/data/all_files.txt'
+ALL_FILES_FILE = '../hw1/hw1/prepare/data/all_files.txt'
 
-DONE_FILES_FILE = './data/m2_files_done.txt'
+DONE_FILES_FILE = './data/m1_files_done.txt'
 
 
 def read_dirs_file(file_path):
@@ -44,6 +44,7 @@ def read_dirs_file(file_path):
 
 
 def add_dir_to_file(current_dir, file_path):
+
     with open(file_path, 'a') as outfile:
         outfile.write(current_dir)
         outfile.write('\n')
@@ -56,16 +57,17 @@ def main():
 
     for file_path in all_files:
         if file_path not in done_files:
-            #if file_path.split('/')[-2] > '2017-10-10':
+            #if file_path.split('/')[-2] > '2017-09-10':
             #    break
-            if file_path.split('/')[-2] < '2017-11-01':
+            if file_path.split('/')[-2] < '2017-11-13':
                 continue
             print(file_path)
             dir_path = file_path.split('/')[-2]
             with open('date.txt', 'w') as outfile:
                 outfile.write(dir_path)
             #command = TEMPLATE.format(file_path)
-            command = 'spark-submit --master yarn --num-executors 8 --conf "spark.yarn.executor.memoryOverhead=1024" m2_spark.py'
+            #command = 'spark-submit --master yarn --num-executors 8 --conf "spark.yarn.executor.memoryOverhead=1024" m1_spark.py'
+            command = 'spark-submit --master yarn --num-executors 8 --conf "spark.yarn.executor.memoryOverhead=1024" m1_spark.py' 
             result_code = int(os.system(command))
             if result_code != 0:
                 print '\n\n*********\n\nERROR\n\n*********\n\n'
@@ -73,8 +75,8 @@ def main():
             print '\ncomputed\n'
 
             dir_path = file_path.split('/')[-2]
-            out_file = '../metrics/{0}/mhw2_2.txt'.format(dir_path)
-            command = 'hdfs dfs -put {0} hw1/metrics/{1}/mhw2_2.txt'.format(out_file, dir_path)
+            out_file = '../hw1/hw1/metrics/{0}/mhw2_1.txt'.format(dir_path)
+            command = 'hdfs dfs -put {0} hw1/metrics/{1}/mhw2_1.txt'.format(out_file, dir_path)
             result_command = int(os.system(command))
             if result_command != 0:
                 print '\n\n++++++++++\n\nERROR\n\n++++++++++\n\n'

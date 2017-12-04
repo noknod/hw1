@@ -66,7 +66,8 @@ def main():
     #    print referer
     # use sessions.fold(...) to sum for all keys
     #referers.saveAsTextFile('/user/yuklyushkin/hw2/metrics/m1_cur.txt')
-    with open('../hw1/hw1/metrics/{0}/mhw2_1.txt'.format(date_str), 'w') as outfile:
+    #with open('../hw1/hw1/metrics/{0}/mhw2_1.txt'.format(date_str), 'w') as outfile:
+    with open('../metrics/{0}/mhw2_1.txt'.format(date_str), 'w') as outfile:
         is_was = False
         for referer in referers.collect():
             if is_was:
