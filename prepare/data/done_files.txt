@@ -93,3 +93,8 @@
 /user/bigdatashad/logs/2017-11-30
 /user/bigdatashad/logs/2017-12-01
 /user/bigdatashad/logs/2017-12-02
+/user/bigdatashad/logs/2017-12-03
+/user/bigdatashad/logs/2017-12-04
+/user/bigdatashad/logs/2017-12-05
+/user/bigdatashad/logs/2017-12-06
+/user/bigdatashad/logs/2017-12-07
