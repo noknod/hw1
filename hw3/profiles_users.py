@@ -15,7 +15,7 @@ OUT_DIR=out
 NUM_REDUCERS=1 # > 0 to run the Reduce phase
 CONFIG="--config /home/agorokhov/conf.empty"
 
-hdfs dfs -rm -r -skipTrash out1
+hdfs dfs -rm -r -skipTrash out
 
 yarn jar /opt/hadoop/hadoop-streaming.jar \
     -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator \
@@ -32,7 +32,7 @@ yarn jar /opt/hadoop/hadoop-streaming.jar \
 """
 
 
-ALL_FILES_FILE = '../../prepare/data/all_files.txt'
+ALL_FILES_FILE = '../prepare/data/all_files.txt'
 
 DONE_FILES_FILE = './data/profiles_users_files_done.txt'
 
@@ -59,7 +59,7 @@ def main():
     print 'All {0}, done {1} files'.format(len(all_files), len(done_files))
 
     for file_path in all_files:
-        if file_path not in done_files:
+        if file_path not in done_files or True:
             print(file_path)
             command = TEMPLATE.format(file_path)
             result_code = int(os.system(command))
