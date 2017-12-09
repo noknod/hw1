@@ -60,6 +60,10 @@ def main():
 
     for file_path in all_files:
         if file_path not in done_files:
+            #if file_path.split('/')[-2] < '2017-12-01':
+            #    continue                
+            #if file_path.split('/')[-2] > '2017-12-01':
+            #    break
             print(file_path)
             command = TEMPLATE.format(file_path)
             result_code = int(os.system(command))
