@@ -29,12 +29,14 @@ def connect():
 
 
 #def generate(args, table):
-def generate(table, profile, date_str, hours_str):
-    b = table.batch()
+def put(table, profile, date_str, hours_str):
     #for time in get_time_range(args):
     #    b.put(time, {"cf:value": str(random.randint(0, 100000))})
     key = profile + '_' + date_str
+
+    b = table.batch()
     b.put(key, {"hits:hits": hours_str})
+
     b.send()
 
 
@@ -53,7 +55,7 @@ def query(args, table):
 def main():
     table = connect()
 
-    generate(table, 'test', '2017-12-09', '1,2,3,4,0,87,2')
+    put(table, 'test', '2017-12-09', '1,2,3,4,0,87,2')
 
 
 if __name__ == "__main__":
