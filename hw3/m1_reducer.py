@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # vim:set et ts=4 sw=4:
 
+import random
 import sys
 
 sys.path.append('./')
@@ -35,14 +36,17 @@ def put(table, profile, date_str, hours_str):
 def create_dict():
     answer = {}
     for index in range(24):
-        answer[str(index)] = 0
+        key = str(index)
+        answer[key.zfill(2)] = 0
     return answer
 
 
 def get_str_from_dict(hours):
     answer = ''
     for index in range(24):
-        answer += ' ' + str(hours[str(index)])
+        key = str(index)
+        key = key.zfill(2)
+        answer += ' ' + str(hours[key])
     return answer.strip().replace(' ', ',')
 
 
@@ -55,7 +59,7 @@ def save_into_hbase(table, profile, hours):
 def main():
     table = connect()
 
-    current_key is None
+    current_key = None
 
     for line in sys.stdin:
         line = line.strip()
@@ -79,7 +83,7 @@ def main():
 
     if not current_key is None:
         #print current_key, get_str_from_dict(hours)
-        save_into_hbase(current_key, hours)
+        save_into_hbase(table, current_key, hours)
 
 
 if __name__ == '__main__':

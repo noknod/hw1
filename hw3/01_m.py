@@ -9,13 +9,14 @@ TEMPLATE = """
 #!/usr/bin/env bash
 
 OUT_DIR=out
-NUM_REDUCERS=5 # > 0 to run the Reduce phase
+NUM_REDUCERS=10 # > 0 to run the Reduce phase
 CONFIG="--config /home/agorokhov/conf.empty"
 
 hdfs dfs -rm -r -skipTrash out
 
 yarn jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-streaming.jar \
     -D mapreduce.job.name="KUA HW 3 metric 1" \
+    -D mapreduce.job.maps=20 \
     -D mapreduce.job.reduces=$NUM_REDUCERS \
     -files m1_mapper.py,m1_reducer.py,m1_date.dat \
     -mapper "./m1_mapper.py" \
@@ -62,7 +63,7 @@ def main():
             with open('./m1_date.dat', 'w') as outfile:
                 outfile.write(str_date_file)
 
-            pu_file_path = '/hw1/metrics/{0}/profiles_users.txt'.format(str_date_file)
+            pu_file_path = '/user/yuklyushkin/hw1/metrics/{0}/profiles_users.txt'.format(str_date_file)
             command = TEMPLATE.format(pu_file_path)
             result_code = int(os.system(command))
             if result_code != 0:
@@ -78,7 +79,7 @@ def main():
             #    break
             add_dir_to_file(file_path, DONE_FILES_FILE)
             
-        break
+        #break
 
 
 if __name__ == '__main__':
