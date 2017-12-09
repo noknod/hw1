@@ -34,7 +34,7 @@ MHW2_2_FILE = 'mhw2_2.txt'
 
 
 # hw 3
-#import happybase
+import happybase
 
 
 HOSTS = ["hadoop2-%02d.yandex.ru" % i for i in xrange(11, 14)]
@@ -235,20 +235,31 @@ def log(data_str):
         outfile.write(data_str)
 
 
-def read_hw3_data_by_date(date_str, profile, ip):
+def read_hw3_data_by_date(date_in, profile, ip):
     answer = {}
-    log('connect to profiles\n')
     try:
+        date_str = date_in.strftime("%Y-%m-%d")
+        #print date_str
+        key = profile[2:] + '_' + date_str
+        log(key)
+        log('\n')
+
+        log('connect to profiles\n')
         table = connect(PROFILES_TABLE)
-        value = table.row(profile + '_' + date_str)
+
+        value = table.row(key)
+        log(str(value))
+        log('\n')
 
         if 'hits:hits' in value:
             answer['profile_hits'] = [int(dummy) for dummy in value['hits:hits'].split(',')]
             print 'profile_hits', answer['profile_hits'], '\n'
+            log('profile_hits - ' + str(answer['profile_hits']) + '\n')
 
         if 'users:users' in value:
             answer['profile_users'] = [int(dummy) for dummy in value['users:users'].split(',')]
             print 'profile_users', answer['profile_users'], '\n'
+            log('profile_users - ' + str(answer['profile_users']) + '\n')
 
     except Exception as e:
         log('\n')
