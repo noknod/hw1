@@ -33,6 +33,25 @@ MHW2_1_FILE = 'mhw2_1.txt'
 MHW2_2_FILE = 'mhw2_2.txt'
 
 
+# hw 3
+#import happybase
+
+
+HOSTS = ["hadoop2-%02d.yandex.ru" % i for i in xrange(11, 14)]
+PROFILES_TABLE = "bigdatashad_yuklyushkin_profiles"
+
+
+def connect(table):
+    host = random.choice(HOSTS)
+    conn = happybase.Connection(host)
+
+    conn.open()
+
+
+    return happybase.Table(table, conn)
+# hw 3
+
+
 def iterate_between_dates(start_date, end_date):
     span = end_date - start_date
     #print span
@@ -208,6 +227,70 @@ def api_hw1():
 
     print '[==========]\n'
     return jsonify(result)
+
+
+# hw 3
+def log(data_str):
+    with open('./server.log', 'a') as outfile:
+        outfile.write(data_str)
+
+
+def read_hw3_data_by_date(date, profile, ip):
+    answer = {}
+    log('connect to profiles\n')
+    try:
+        table = connect(PROFILES_TABLE)
+    except Exception as e:
+        log('\n')
+        log(str(e))
+
+    return answer
+
+
+@app.route("/api/hw3")
+def api_hw3():
+    log('\n##########\n')
+    try:
+        log(datetime.datetime.now().strftime("%Y-%m-%d"))
+        log('\n')
+        log(str(request.args))
+        log('\n')
+    except Exception as e:
+        log(str(e))
+        log('\n')
+    
+
+    start_date = request.args.get("start_date", None)
+    #print start_date
+    end_date = request.args.get("end_date", None)
+    #print end_date
+    profile = request.args.get("profile_id", None)
+    #print profile
+    ip = request.args.get("user_ip", None)
+    #print ip
+    if start_date is None or end_date is None or profile is None or ip is None:
+        log('some of parameters is None\n')
+        abort(400)
+    start_date = datetime.datetime(*map(int, start_date.split("-")))
+    end_date = datetime.datetime(*map(int, end_date.split("-")))
+
+    result = {}
+    print '[----------]\n', start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d")
+    print 'hw3\n[----------]'
+    for date in iterate_between_dates(start_date, end_date):
+        print date
+        data = read_hw3_data_by_date(date, profile, ip)
+        #total_hits = int(random.normalvariate(1000, 50))
+        #total_users = int(random.normalvariate(100, 5))
+        result[date.strftime("%Y-%m-%d")] = data#{
+        #    "total_hits": total_hits,
+        #    "total_users": total_users,
+        #}
+        print ''
+
+    print '[==========]\n'
+    return jsonify(result)
+# hw 3
 
 
 def login_to_port(login):

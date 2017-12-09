@@ -40,22 +40,26 @@ def put(table, profile, date_str, hours_str):
     b.send()
 
 
-def query(args, table):
-    r = list(get_time_range(args))
-    t = 0L
-    for key, data in table.scan(row_start=min(r), row_stop=max(r)):
-        if args.total:
-            t += long(data["cf:value"])
-        else:
-            print "%s\t%s" % (key, data["cf:value"])
-    if args.total:
-        print "total\t%s" % t
+def get(table, profile, date_str):
+    value = table.row(profile + '_' + date_str)
+    print value
+    #r = list(get_time_range(args))
+    #t = 0L
+    #for key, data in table.scan(row_start=min(r), row_stop=max(r)):
+    #    if args.total:
+    #        t += long(data["cf:value"])
+    #    else:
+    #        print "%s\t%s" % (key, data["cf:value"])
+    #if args.total:
+    #    print "total\t%s" % t
 
 
 def main():
     table = connect()
 
-    put(table, 'test', '2017-12-09', '1,2,3,4,0,87,2')
+    #put(table, 'test', '2017-12-09', '1,2,3,4,0,87,2')
+
+    get(table, '1000', '2017-12-01')
 
 
 if __name__ == "__main__":

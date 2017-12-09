@@ -10,3 +10,5 @@ scan 'bigdatashad_yuklyushkin_profiles'
 delete 'bigdatashad_yuklyushkin_profiles', 'test_2017-12-09', 'hits:hits'
 delete 'bigdatashad_yuklyushkin_profiles', 'test_2017-12-09', 'users:users'
 
+disable 'bigdatashad_yuklyushkin_profiles'
+drop 'bigdatashad_yuklyushkin_profiles'
