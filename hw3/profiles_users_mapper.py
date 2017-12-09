@@ -47,7 +47,7 @@ def extract_fields(line):
     else:
         liked = 'yes'
 
-    return profile + '\t' + time_str + '\t' + ip + '\t' + liked
+    return profile + ' ' + time_str + ' ' + ip + ' ' + liked
 
 
 # 196.223.28.31 - - [16/Nov/2015:00:00:00 +0400] "GET /photo/manage.cgi HTTP/1.1" 200 0 "-" "Mozilla/6.66"
@@ -55,10 +55,8 @@ def extract_fields(line):
 def main():
     for line in sys.stdin:
         answer = extract_fields(line)
-        if answer is None:
-            continue
-
-        print answer
+        if answer is not None:
+            print answer
         
     #print 'total', total
     """

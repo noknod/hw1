@@ -59,7 +59,7 @@ def main():
     print 'All {0}, done {1} files'.format(len(all_files), len(done_files))
 
     for file_path in all_files:
-        if file_path not in done_files or True:
+        if file_path not in done_files:
             print(file_path)
             command = TEMPLATE.format(file_path)
             result_code = int(os.system(command))
@@ -76,7 +76,7 @@ def main():
                 break
             add_dir_to_file(file_path, DONE_FILES_FILE)
             
-        break
+        #break
 
 
 if __name__ == '__main__':
