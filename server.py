@@ -235,11 +235,21 @@ def log(data_str):
         outfile.write(data_str)
 
 
-def read_hw3_data_by_date(date, profile, ip):
+def read_hw3_data_by_date(date_str, profile, ip):
     answer = {}
     log('connect to profiles\n')
     try:
         table = connect(PROFILES_TABLE)
+        value = table.row(profile + '_' + date_str)
+
+        if 'hits:hits' in value:
+            answer['profile_hits'] = [int(dummy) for dummy in value['hits:hits'].split(',')]
+            print 'profile_hits', answer['profile_hits'], '\n'
+
+        if 'users:users' in value:
+            answer['profile_users'] = [int(dummy) for dummy in value['users:users'].split(',')]
+            print 'profile_users', answer['profile_users'], '\n'
+
     except Exception as e:
         log('\n')
         log(str(e))
