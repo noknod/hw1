@@ -5,7 +5,7 @@ import random
 import sys
 
 sys.path.append('./')
-with open('./m1_date.dat', 'r') as infile:
+with open('./m2_date.dat', 'r') as infile:
     date_file = infile.read().strip()
 
 
@@ -28,7 +28,7 @@ def put(table, profile, date_str, hours_str):
     key = profile + '_' + date_str
 
     b = table.batch()
-    b.put(key, {"hits:hits": hours_str})
+    b.put(key, {"users:users": hours_str})
 
     b.send()
 
@@ -60,16 +60,20 @@ def main():
     table = connect()
 
     current_key = None
+    current_ip = None
+    current_hour = None
 
     for line in sys.stdin:
         line = line.strip()
         if len(line) == 0:
             continue
 
-        key, value = line.split('\t')
+        key, value, ip = line.split('\t')
 
         if current_key is None:
             current_key = key
+            current_hour = value
+            current_ip = ip
             hours = create_dict()
 
             hours[value] += 1
@@ -80,12 +84,18 @@ def main():
             #print current_key, str(hours)
 
             current_key = key
+            current_hour = value
+            current_ip = ip
             hours = create_dict()
 
             hours[value] += 1     
 
         else:
-            hours[value] += 1
+            if current_hour != value or current_ip != ip:
+                hours[value] += 1
+
+                current_hour = value
+                current_ip = ip
 
     if not current_key is None:
         #print current_key, get_str_from_dict(hours)
