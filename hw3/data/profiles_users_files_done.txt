@@ -40,14 +40,6 @@
 /user/bigdatashad/logs/2017-10-10/access.log.2017-10-10
 /user/bigdatashad/logs/2017-10-11/access.log.2017-10-11
 /user/bigdatashad/logs/2017-10-12/access.log.2017-10-12
-/user/bigdatashad/logs/2017-12-01/access.log.2017-12-01
-/user/bigdatashad/logs/2017-12-02/access.log.2017-12-02
-/user/bigdatashad/logs/2017-12-03/access.log.2017-12-03
-/user/bigdatashad/logs/2017-12-04/access.log.2017-12-04
-/user/bigdatashad/logs/2017-12-05/access.log.2017-12-05
-/user/bigdatashad/logs/2017-12-06/access.log.2017-12-06
-/user/bigdatashad/logs/2017-12-07/access.log.2017-12-07
-/user/bigdatashad/logs/2017-12-08/access.log.2017-12-08
 /user/bigdatashad/logs/2017-10-13/access.log.2017-10-13
 /user/bigdatashad/logs/2017-10-14/access.log.2017-10-14
 /user/bigdatashad/logs/2017-10-15/access.log.2017-10-15
@@ -97,4 +89,7 @@
 /user/bigdatashad/logs/2017-11-28/access.log.2017-11-28
 /user/bigdatashad/logs/2017-11-29/access.log.2017-11-29
 /user/bigdatashad/logs/2017-11-30/access.log.2017-11-30
+/user/bigdatashad/logs/2017-12-06/access.log.2017-12-06
+/user/bigdatashad/logs/2017-12-07/access.log.2017-12-07
+/user/bigdatashad/logs/2017-12-08/access.log.2017-12-08
 /user/bigdatashad/logs/2017-12-09/access.log.2017-12-09

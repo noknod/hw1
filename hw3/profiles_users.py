@@ -60,8 +60,8 @@ def main():
 
     for file_path in all_files:
         if file_path not in done_files:
-            #if file_path.split('/')[-2] < '2017-12-01':
-            #    continue                
+            if file_path.split('/')[-2] < '2017-12-06':
+                continue                
             #if file_path.split('/')[-2] > '2017-12-01':
             #    break
             print(file_path)
@@ -79,6 +79,8 @@ def main():
                 print '\n\n++++++++++\n\nERROR\n\n++++++++++\n\n'
                 break
             add_dir_to_file(file_path, DONE_FILES_FILE)
+
+            #break
             
         #break
 

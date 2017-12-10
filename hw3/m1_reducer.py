@@ -36,7 +36,7 @@ def put(table, profile, date_str, hours_str):
 def create_dict():
     answer = {}
     for index in range(24):
-        key = str(index)
+        key = str(index)        
         answer[key.zfill(2)] = 0
     return answer
 
@@ -66,24 +66,31 @@ def main():
         if len(line) == 0:
             continue
 
-        key, value = line.split(' ')
+        key, value = line.split('\t')
 
         if current_key is None:
             current_key = key
             hours = create_dict()
 
+            hours[value] += 1
+
         elif current_key != key:
             #print current_key, get_str_from_dict(hours)
             save_into_hbase(table, current_key, hours)
+            print current_key, str(hours)
 
             current_key = key
             hours = create_dict()
+
+            hours[value] += 1     
+
         else:
             hours[value] += 1
 
     if not current_key is None:
         #print current_key, get_str_from_dict(hours)
         save_into_hbase(table, current_key, hours)
+        print current_key, str(hours)
 
 
 if __name__ == '__main__':
