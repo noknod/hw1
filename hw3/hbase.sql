@@ -12,3 +12,6 @@ delete 'bigdatashad_yuklyushkin_profiles', 'test_2017-12-09', 'users:users'
 
 disable 'bigdatashad_yuklyushkin_profiles'
 drop 'bigdatashad_yuklyushkin_profiles'
+
+
+get 'bigdatashad_yuklyushkin_profiles', 'id10012-2017-12-06', {COLUMN => 'hits:hits', VERSIONS => 5}
