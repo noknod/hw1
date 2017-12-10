@@ -8,13 +8,13 @@ def extract_fields(line):
     if len(line) == 0:
         return
 
-    profile, time_str, ip, liked = line.split()
-    if liked != 'no':
+    profile, time_str, ip, liked = line.split('\t')
+    if liked == 'yes':
         return
 
     hour = time_str.split(':')[0]
 
-    return profile + ' ' + hour
+    return profile + '\t' + hour
 
 
 def main():

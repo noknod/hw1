@@ -9,7 +9,7 @@ TEMPLATE = """
 #!/usr/bin/env bash
 
 OUT_DIR=out
-NUM_REDUCERS=10 # > 0 to run the Reduce phase
+NUM_REDUCERS=1 # > 0 to run the Reduce phase
 CONFIG="--config /home/agorokhov/conf.empty"
 
 hdfs dfs -rm -r -skipTrash out
@@ -54,7 +54,7 @@ def main():
     for file_path in all_files:
         if file_path not in done_files:
             str_date_file = file_path.split('/')[-2]
-            if str_date_file < '2017-12-01':
+            if str_date_file < '2017-12-06':
                 continue                
             #if str_date_file > '2017-12-01':
             #    break
@@ -78,6 +78,7 @@ def main():
             #    print '\n\n++++++++++\n\nERROR\n\n++++++++++\n\n'
             #    break
             add_dir_to_file(file_path, DONE_FILES_FILE)
+            #break
             
         #break
 

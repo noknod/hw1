@@ -99,3 +99,4 @@
 /user/bigdatashad/logs/2017-12-06
 /user/bigdatashad/logs/2017-12-07
 /user/bigdatashad/logs/2017-12-08
+/user/bigdatashad/logs/2017-12-09

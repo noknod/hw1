@@ -33,21 +33,24 @@ def extract_fields(line):
         date = datetime.datetime.strptime(match.group(2), "%d/%b/%Y:%H:%M:%S")
     except:
         return
+    #date = datetime.datetime.strptime(match.group(2), "%d/%b/%Y:%H:%M:%S")
     time_str = date.strftime("%H:%M:%S")
     
     resource = match.group(4)
-    if not resource.startswith('/'):
+    if not resource.startswith('/id'):
         return
-    match = ID_RE.search(resource)
-    if not match:
-        return
-    profile = match.group(1)    
-    if resource.find('?like=1') == -1:
+    #match = ID_RE.search(resource)
+    #if not match:
+    #    return
+    #profile = match.group(1)    
+    if resource.find('?like') == -1:
+        profile = resource[1:]
         liked = 'no'
     else:
+        profile = resource.split('?like')[0][1:]
         liked = 'yes'
 
-    return profile + ' ' + time_str + ' ' + ip + ' ' + liked
+    return profile + '\t' + time_str + '\t' + ip + '\t' + liked
 
 
 # 196.223.28.31 - - [16/Nov/2015:00:00:00 +0400] "GET /photo/manage.cgi HTTP/1.1" 200 0 "-" "Mozilla/6.66"

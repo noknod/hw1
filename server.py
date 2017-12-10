@@ -240,7 +240,7 @@ def read_hw3_data_by_date(date_in, profile, ip):
     try:
         date_str = date_in.strftime("%Y-%m-%d")
         #print date_str
-        key = profile[2:] + '_' + date_str
+        key = profile + '_' + date_str
         log(key)
         log('\n')
 
