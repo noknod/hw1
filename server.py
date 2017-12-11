@@ -238,6 +238,9 @@ def log(data_str):
 def read_hw3_data_by_date(date_in, profile, ip):
     answer = {}
     try:
+        answer['user_most_visited_profiles'] = []
+        answer['profile_last_three_liked_users'] = []
+
         date_str = date_in.strftime("%Y-%m-%d")
         #print date_str
         key = profile + '_' + date_str
