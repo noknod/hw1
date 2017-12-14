@@ -39,6 +39,7 @@ import happybase
 
 HOSTS = ["hadoop2-%02d.yandex.ru" % i for i in xrange(11, 14)]
 PROFILES_TABLE = "bigdatashad_yuklyushkin_profiles"
+USERS_TABLE = "bigdatashad_yuklyushkin_users"
 
 
 def connect(table):
@@ -238,7 +239,6 @@ def log(data_str):
 def read_hw3_data_by_date(date_in, profile, ip):
     answer = {}
     try:
-        answer['user_most_visited_profiles'] = []
         answer['profile_last_three_liked_users'] = []
 
         date_str = date_in.strftime("%Y-%m-%d")
@@ -263,6 +263,28 @@ def read_hw3_data_by_date(date_in, profile, ip):
             answer['profile_users'] = [int(dummy) for dummy in value['users:users'].split(',')]
             print 'profile_users', answer['profile_users'], '\n'
             log('profile_users - ' + str(answer['profile_users']) + '\n')
+
+    except Exception as e:
+        log('\n')
+        log(str(e))
+
+    try:
+        date_str = date_in.strftime("%Y-%m-%d")
+        key = ip + '_' + date_str
+        log(key)
+        log('\n')
+
+        log('connect to users\n')
+        table = connect(USERS_TABLE)
+
+        value = table.row(key)
+        log(str(value))
+        log('\n')
+
+        if 'profiles:profiles' in value:
+            answer['user_most_visited_profiles'] = [dummy for dummy in value['profiles:profiles'].split(',')]
+            print 'most visited profiles', answer['user_most_visited_profiles'], '\n'
+            log('most visited profiles - ' + str(answer['user_most_visited_profiles']) + '\n')
 
     except Exception as e:
         log('\n')

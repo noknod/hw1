@@ -14,4 +14,14 @@ disable 'bigdatashad_yuklyushkin_profiles'
 drop 'bigdatashad_yuklyushkin_profiles'
 
 
-get 'bigdatashad_yuklyushkin_profiles', 'id10012-2017-12-06', {COLUMN => 'hits:hits', VERSIONS => 5}
+get 'bigdatashad_yuklyushkin_profiles', 'id10012_2017-12-06', {COLUMN => 'hits:hits', VERSIONS => 5}
+
+- - -
+
+create 'bigdatashad_yuklyushkin_users', 'profiles'
+
+scan 'bigdatashad_yuklyushkin_users'
+
+get 'bigdatashad_yuklyushkin_users', '100.11.10.111_2017-12-09', {COLUMN => 'profiles:profiles', VERSIONS => 5}
+
+get 'bigdatashad_yuklyushkin_users', '100.11.10.111_2017-12-06', {COLUMN => 'profiles:profiles', VERSIONS => 5}
