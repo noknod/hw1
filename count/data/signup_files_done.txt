@@ -33,3 +33,7 @@
 /user/bigdatashad/logs/2017-12-07/access.log.2017-12-07
 /user/bigdatashad/logs/2017-12-08/access.log.2017-12-08
 /user/bigdatashad/logs/2017-12-09/access.log.2017-12-09
+/user/bigdatashad/logs/2017-12-10/access.log.2017-12-10
+/user/bigdatashad/logs/2017-12-11/access.log.2017-12-11
+/user/bigdatashad/logs/2017-12-12/access.log.2017-12-12
+/user/bigdatashad/logs/2017-12-13/access.log.2017-12-13
