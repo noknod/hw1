@@ -11,6 +11,8 @@ def extract_fields(line):
     profile, time_str, ip, liked = line.split('\t')
     if liked == 'yes':
         return
+    #if profile != 'id10012':
+    #    return
 
     hour = time_str.split(':')[0]
 

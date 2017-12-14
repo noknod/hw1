@@ -69,6 +69,7 @@ def main():
             continue
 
         key, value, ip = line.split('\t')
+        #print key, value, ip
 
         if current_key is None:
             current_key = key

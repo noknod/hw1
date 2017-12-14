@@ -17,13 +17,14 @@ hdfs dfs -rm -r -skipTrash out
 yarn jar /opt/hadoop/hadoop-streaming.jar \
     -D mapreduce.job.name="KUA HW 3 metric 2" \
     -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator \
-    -D mapred.text.key.comparator.options=-k1,2,3 \
+    -D mapred.text.key.comparator.options=-k1,3 \
     -D stream.num.map.output.key.fields=3 \
     -D mapred.text.key.partitioner.options=-k1,1 \
     -D mapreduce.job.maps=20 \
     -D mapreduce.job.reduces=$NUM_REDUCERS \
     -files m2_mapper.py,m2_reducer.py,m2_date.dat \
     -mapper "./m2_mapper.py" \
+    -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
     -reducer "./m2_reducer.py" \
     -input hdfs://{0} \
     -output out
@@ -82,7 +83,7 @@ def main():
             #    print '\n\n++++++++++\n\nERROR\n\n++++++++++\n\n'
             #    break
             add_dir_to_file(file_path, DONE_FILES_FILE)
-            break
+            #break
             
         #break
 
