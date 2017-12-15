@@ -42,7 +42,7 @@ def sort_and_get_str_from_dict(profiles):
     profile_list = []
     for profile, cnt in profiles.items():
         profile_list.append((cnt, profile,))
-    sorted(profile_list)
+    profile_list = sorted(profile_list)
 
     answer = ' '.join(dummy[1] for dummy in profile_list)
     return answer.strip().replace(' ', ',')

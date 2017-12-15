@@ -12,6 +12,10 @@ def extract_fields(line):
     if liked == 'yes':
         return
 
+    #if ip != '100.11.10.111':
+    #if ip != '9.20.100.231':
+    #    return
+
     return ip + '\t' + profile
 
 

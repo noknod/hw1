@@ -16,7 +16,7 @@ hdfs dfs -rm -r -skipTrash out
 
 yarn jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-streaming.jar \
     -D mapreduce.job.name="KUA HW 3 metric 3" \
-    -D mapreduce.job.maps=40 \
+    -D mapreduce.job.maps=20 \
     -D mapreduce.job.reduces=$NUM_REDUCERS \
     -files m3_mapper.py,m3_reducer.py,m3_date.dat \
     -mapper "./m3_mapper.py" \
@@ -54,7 +54,7 @@ def main():
     for file_path in all_files:
         if file_path not in done_files:
             str_date_file = file_path.split('/')[-2]
-            if str_date_file < '2017-12-06':
+            if str_date_file < '2017-12-09':
                 continue                
             #if str_date_file > '2017-12-01':
             #    break
