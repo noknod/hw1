@@ -591,3 +591,16 @@ profile_users - [6, 8, 9, 4, 3, 6, 2, 5, 1, 2, 1, 0, 3, 5, 2, 5, 3, 3, 7, 4, 3, 
 connect to users
 {'profiles:profiles': 'id93182,id94911,id22704,id84615'}
 most visited profiles - ['id93182', 'id94911', 'id22704', 'id84615']
+
+##########
+2017-12-16
+ImmutableMultiDict([('date', u'2017-12-16'), ('user_ip', u'100.11.10.111'), ('profile_id', u'id10026'), ('start_date', u'2017-12-11'), ('end_date', u'2017-12-11')])
+id10026_2017-12-11
+connect to profiles
+{'users:users': '7,6,5,8,5,3,4,2,0,3,2,2,4,3,4,5,8,9,3,2,1,6,2,8', 'last_three_liked_users:users': '91.190.72.241,83.143.33.77,194.214.184.64', 'hits:hits': '7,6,5,8,5,3,4,2,0,3,2,2,4,3,4,5,8,9,3,2,1,6,2,8'}
+profile_hits - [7, 6, 5, 8, 5, 3, 4, 2, 0, 3, 2, 2, 4, 3, 4, 5, 8, 9, 3, 2, 1, 6, 2, 8]
+profile_users - [7, 6, 5, 8, 5, 3, 4, 2, 0, 3, 2, 2, 4, 3, 4, 5, 8, 9, 3, 2, 1, 6, 2, 8]
+100.11.10.111_2017-12-11
+connect to users
+{'profiles:profiles': 'id40364,id47036'}
+most visited profiles - ['id40364', 'id47036']

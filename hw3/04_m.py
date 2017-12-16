@@ -58,11 +58,11 @@ def main():
     for file_path in all_files:
         if file_path not in done_files:
             str_date_file = file_path.split('/')[-2]
-            if str_date_file < '2017-12-11':
+            if str_date_file < '2017-12-06':
                 continue                
-            #if str_date_file > '2017-12-01':
+            #if str_date_file >= '2017-12-11':
             #    break
-            print(file_path)
+            #print(file_path)
 
             date_file = datetime.strptime(str_date_file, '%Y-%m-%d').date()
             begin_date = date_file + timedelta(days=-4)
@@ -97,7 +97,7 @@ def main():
             #    print '\n\n++++++++++\n\nERROR\n\n++++++++++\n\n'
             #    break
             add_dir_to_file(file_path, DONE_FILES_FILE)
-            break
+            #break
             
         #break
 

@@ -70,7 +70,7 @@ def main():
             continue
 
         key, ip = line.split('\t')
-        profile, date_file, time_str = key.split('_')
+        profile, date_str, time_str = key.split('_')
 
         if current_key is None:
             current_key = profile
