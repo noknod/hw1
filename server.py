@@ -239,8 +239,6 @@ def log(data_str):
 def read_hw3_data_by_date(date_in, profile, ip):
     answer = {}
     try:
-        answer['profile_last_three_liked_users'] = []
-
         date_str = date_in.strftime("%Y-%m-%d")
         #print date_str
         key = profile + '_' + date_str
@@ -258,11 +256,23 @@ def read_hw3_data_by_date(date_in, profile, ip):
             answer['profile_hits'] = [int(dummy) for dummy in value['hits:hits'].split(',')]
             print 'profile_hits', answer['profile_hits'], '\n'
             log('profile_hits - ' + str(answer['profile_hits']) + '\n')
+        else:
+            answer['profile_hits'] = []
 
         if 'users:users' in value:
             answer['profile_users'] = [int(dummy) for dummy in value['users:users'].split(',')]
             print 'profile_users', answer['profile_users'], '\n'
             log('profile_users - ' + str(answer['profile_users']) + '\n')
+        else:
+            answer['profile_users'] = []
+
+        if 'last_three_liked_users:users' in value:            
+            answer['profile_last_three_liked_users'] = [dummy for dummy in value['last_three_liked_users:users'].split(',')]
+            print 'last_three_liked_users', answer['profile_last_three_liked_users'], '\n'
+            log('last_three_liked_users - ' + str(answer['profile_last_three_liked_users']) + '\n')
+
+        else:
+            answer['profile_last_three_liked_users'] = []
 
     except Exception as e:
         log('\n')
@@ -285,6 +295,8 @@ def read_hw3_data_by_date(date_in, profile, ip):
             answer['user_most_visited_profiles'] = [dummy for dummy in value['profiles:profiles'].split(',')]
             print 'most visited profiles', answer['user_most_visited_profiles'], '\n'
             log('most visited profiles - ' + str(answer['user_most_visited_profiles']) + '\n')
+        else:
+            answer['user_most_visited_profiles'] = []
 
     except Exception as e:
         log('\n')

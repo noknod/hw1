@@ -56,7 +56,7 @@ class ProfileLastThreeLikedUsers:
 def save_into_hbase(table, profile, users):
     users_str = users.get_str()
 
-    put(table, ip, date_file, profiles_str)
+    put(table, profile, date_file, users_str)
 
 
 def main():

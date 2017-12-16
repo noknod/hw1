@@ -25,3 +25,12 @@ scan 'bigdatashad_yuklyushkin_users'
 get 'bigdatashad_yuklyushkin_users', '100.11.10.111_2017-12-09', {COLUMN => 'profiles:profiles', VERSIONS => 5}
 
 get 'bigdatashad_yuklyushkin_users', '100.11.10.111_2017-12-06', {COLUMN => 'profiles:profiles', VERSIONS => 5}
+
+
+- - -
+
+put 'bigdatashad_yuklyushkin_profiles', 'test_2017-12-09', 'last_three_liked_users:users', '100.1,234,3' 
+
+scan 'bigdatashad_yuklyushkin_profiles', {COLUMN => 'last_three_liked_users:users', VERSIONS => 5}
+
+get 'bigdatashad_yuklyushkin_profiles', 'id10026_2017-12-11', {COLUMN => 'last_three_liked_users:users', VERSIONS => 5}
