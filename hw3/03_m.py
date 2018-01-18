@@ -54,7 +54,7 @@ def main():
     for file_path in all_files:
         if file_path not in done_files:
             str_date_file = file_path.split('/')[-2]
-            if str_date_file < '2017-12-15':
+            if str_date_file < '2017-12-07':
                 continue                
             #if str_date_file > '2017-12-01':
             #    break

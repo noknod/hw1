@@ -12,6 +12,24 @@ command = 'python 04_files_finder.py'
 os.system(command)
 
 
+path = '../hw3'
+os.chdir(path)
+command = 'python profiles_users.py'
+os.system(command)
+
+command = 'python 04_m.py'
+os.system(command)
+
+command = 'python 01_m.py'
+os.system(command)
+
+command = 'python 02_m.py'
+os.system(command)
+
+command = 'python 03_m.py'
+os.system(command)
+
+
 path = '../hw2'
 os.chdir(path)
 command = 'python 01_m.py'
